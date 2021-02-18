@@ -1,69 +1,4 @@
-#include "daisysp.h"
-#include "daisy_field.h"
-
-#define UINT32_MSB 0x80000000U
-#define MAX_LENGTH 32U
-
-using namespace daisy;
-using namespace daisysp;
-
-//we've got 8 knobs
-#define NUM_CONTROLS 8
-#define NUM_MODES 5
-
-float kvals[NUM_CONTROLS];
-
-//We have one Daisy Field
-DaisyField hardware;
-
-//there are 16 buttons
-uint8_t buttons[16];
-
-//keyboard LEDS
-size_t keyboard_leds[] = {
-        hardware.LED_KEY_A1,
-        hardware.LED_KEY_A2,
-        hardware.LED_KEY_A3,
-        hardware.LED_KEY_A4,
-        hardware.LED_KEY_A5,
-        hardware.LED_KEY_A6,
-        hardware.LED_KEY_A7,
-        hardware.LED_KEY_A8,
-        hardware.LED_KEY_B1,
-        hardware.LED_KEY_B2,
-        hardware.LED_KEY_B3,
-        hardware.LED_KEY_B4,
-        hardware.LED_KEY_B5,
-        hardware.LED_KEY_B6,
-        hardware.LED_KEY_B7,
-        hardware.LED_KEY_B8,
-  };
-
-//We have 3 osc and 2 white noise generator
-Oscillator osc[3];
-WhiteNoise noise[2];
-
-//5 attack / decay envelopes
-AdEnv     ampEnv[NUM_MODES];
-AdEnv     pitchEnv[NUM_MODES];
-
-//filter fo the hat
-Svf flt;
-
-//metronome
-Metro     tick;
-
-
-//2D array of no. of drums x no. of steps
-bool    Seq[NUM_MODES][MAX_LENGTH];
-
-//the value of which step in the sequence we're on
-uint8_t Step  = 0;
-
-//function to process each step in a sequence
-void ProcessTick();
-//function to process changes in sequence
-void ProcessControls();
+#include "Drums.h"
 
 //this happens every audio callback, called by StartAudio
 //size is the size of the AudioCallback
@@ -132,20 +67,20 @@ void SetupDrums(float samplerate)
     osc[0].SetWaveform(Oscillator::WAVE_TRI);
     osc[0].SetAmp(1);
 
+    osc[1].Init(samplerate);
+    osc[1].SetWaveform(Oscillator::WAVE_SIN);
+    osc[1].SetAmp(1);
+    
     osc[2].Init(samplerate);
     osc[2].SetWaveform(Oscillator::WAVE_SIN);
     osc[2].SetAmp(1);
-    
-    osc[3].Init(samplerate);
-    osc[3].SetWaveform(Oscillator::WAVE_SIN);
-    osc[3].SetAmp(1);
     
     //intialise noise object
     noise[0].Init();
     noise[1].Init();
 
 
-  for (uint32_t i = 0; i < NUM_MODES; i++)
+  for (uint8_t i = 0; i < NUM_MODES; i++)
     {   
       //initialise the envelopes
       ampEnv[i].Init(samplerate);
@@ -170,32 +105,6 @@ void SetupDrums(float samplerate)
 }
 
 typedef void (*Drummer)();
-
-void Kick()
-{
-  ampEnv[0].Trigger();
-  pitchEnv[0].Trigger();
-}
-void Snare()
-{
-  ampEnv[1].Trigger();
-}
-void Hat()
-{
-  //high hat in here
-  ampEnv[2].Trigger();
-}
-void Laser()
-{
-  //pew pew
-  ampEnv[3].Trigger();
-  pitchEnv[3].Trigger();
-}
-void Tom()
-{
-  //Tom goes here
-  ampEnv[4].Trigger();
-}
 
 Drummer Drum[] = {Kick, Snare, Hat, Laser, Tom};
 
@@ -241,6 +150,9 @@ int main(void)
     for(;;) {}
 }
 
+//the value of which step in the sequence we're on
+uint8_t Step  = 0;
+
 void IncrementSteps()
 {
   //add 1 to the step value
@@ -268,8 +180,6 @@ void ProcessTick()
 }
 
 float k6old            = 0.f;
-//default tempo of 3 (assuming Hz)
-float tempo = 3;
 
 void  UpdateTempo()
 {

@@ -1,4 +1,4 @@
-build/Fake08.o: Fake08.cpp ../../DaisyExamples/DaisySP/daisysp.h \
+build/Fake08.o: Fake08.cpp Drums.h ../../DaisyExamples/DaisySP/daisysp.h \
  ../../DaisyExamples/DaisySP/modules/adenv.h \
  ../../DaisyExamples/DaisySP/modules/adsr.h \
  ../../DaisyExamples/DaisySP/modules/allpass.h \
@@ -104,6 +104,7 @@ build/Fake08.o: Fake08.cpp ../../DaisyExamples/DaisySP/daisysp.h \
  ../../DaisyExamples/libdaisy/src/dev/codec_wm8731.h \
  ../../DaisyExamples/libdaisy/src/util/scopedirqblocker.h \
  ../../DaisyExamples/libdaisy/Drivers/CMSIS/Include/cmsis_gcc.h
+Drums.h:
 ../../DaisyExamples/DaisySP/daisysp.h:
 ../../DaisyExamples/DaisySP/modules/adenv.h:
 ../../DaisyExamples/DaisySP/modules/adsr.h:

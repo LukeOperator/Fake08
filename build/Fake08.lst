@@ -1,4 +1,4 @@
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
   60              		@ frame_needed = 0, uses_anonymous_args = 0
   61              		@ link register save eliminated.
   62 0000 7047     		bx	lr
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 2
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 2
 
 
   64              		.weak	_ZN5daisy10DaisyFieldD1Ev
@@ -118,7 +118,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  123              		@ args = 0, pretend = 0, frame = 0
  124              		@ frame_needed = 0, uses_anonymous_args = 0
  125              		@ link register save eliminated.
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 3
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 3
 
 
  126 0000 024B     		ldr	r3, .L12
@@ -178,7 +178,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  185              		.syntax unified
  186              		.thumb
  187              		.thumb_func
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 4
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 4
 
 
  188              		.fpu fpv5-d16
@@ -238,7 +238,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  251 0002 037D     		ldrb	r3, [r0, #20]	@ zero_extendqisi2
  252 0004 82B0     		sub	sp, sp, #8
  253 0006 0446     		mov	r4, r0
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 5
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 5
 
 
  254 0008 0133     		adds	r3, r3, #1
@@ -298,7 +298,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  310 000e 7F28     		cmp	r0, #127
  311 0010 08BF     		it	eq
  312 0012 0133     		addeq	r3, r3, #1
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 6
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 6
 
 
  313 0014 7F29     		cmp	r1, #127
@@ -329,9 +329,9 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  340 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
  341 0004 2DED048B 		vpush.64	{d8, d9}
  342 0008 F7EE008A 		vmov.f32	s17, #1.0e+0
- 343 000c 4B4D     		ldr	r5, .L40
+ 343 000c 4A4D     		ldr	r5, .L40
  344 000e B0EE408A 		vmov.f32	s16, s0
- 345 0012 9FED4B9A 		vldr.32	s18, .L40+4
+ 345 0012 9FED4A9A 		vldr.32	s18, .L40+4
  346 0016 4FF07C58 		mov	r8, #1056964608
  347 001a 0024     		movs	r4, #0
  348 001c C8EE809A 		vdiv.f32	s19, s17, s0
@@ -346,95 +346,95 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  357 003a C5ED049A 		vstr.32	s19, [r5, #16]
  358 003e FFF7FEFF 		bl	_ZN7daisysp10Oscillator12CalcPhaseIncEf
  359 0042 F0EE407A 		vmov.f32	s15, s0
- 360 0046 05F15000 		add	r0, r5, #80
- 361 004a C5F85480 		str	r8, [r5, #84]	@ float
- 362 004e 6C66     		str	r4, [r5, #100]	@ float
+ 360 0046 05F12800 		add	r0, r5, #40
+ 361 004a C5F82C80 		str	r8, [r5, #44]	@ float
+ 362 004e EC63     		str	r4, [r5, #60]	@ float
  363 0050 B0EE490A 		vmov.f32	s0, s18
  364 0054 C5ED067A 		vstr.32	s15, [r5, #24]
  365 0058 C5ED018A 		vstr.32	s17, [r5, #4]
- 366 005c 85ED178A 		vstr.32	s16, [r5, #92]
- 367 0060 C5ED189A 		vstr.32	s19, [r5, #96]
- 368 0064 85ED169A 		vstr.32	s18, [r5, #88]
+ 366 005c 85ED0D8A 		vstr.32	s16, [r5, #52]
+ 367 0060 C5ED0E9A 		vstr.32	s19, [r5, #56]
+ 368 0064 85ED0C9A 		vstr.32	s18, [r5, #48]
  369 0068 AF84     		strh	r7, [r5, #36]	@ movhi
  370 006a 2E70     		strb	r6, [r5]
  371 006c FFF7FEFF 		bl	_ZN7daisysp10Oscillator12CalcPhaseIncEf
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 7
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 7
 
 
- 372 0070 C5F87C80 		str	r8, [r5, #124]	@ float
+ 372 0070 C5F85480 		str	r8, [r5, #84]	@ float
  373 0074 4FF00008 		mov	r8, #0
- 374 0078 C5F88C40 		str	r4, [r5, #140]	@ float
- 375 007c 314C     		ldr	r4, .L40+8
- 376 007e 05F17800 		add	r0, r5, #120
- 377 0082 85ED1A0A 		vstr.32	s0, [r5, #104]
- 378 0086 B0EE490A 		vmov.f32	s0, s18
- 379 008a A5F87470 		strh	r7, [r5, #116]	@ movhi
- 380 008e 04F58C7A 		add	r10, r4, #280
- 381 0092 85F85080 		strb	r8, [r5, #80]
- 382 0096 C5ED158A 		vstr.32	s17, [r5, #84]
- 383 009a 85ED218A 		vstr.32	s16, [r5, #132]
- 384 009e C5ED229A 		vstr.32	s19, [r5, #136]
- 385 00a2 85ED209A 		vstr.32	s18, [r5, #128]
- 386 00a6 FFF7FEFF 		bl	_ZN7daisysp10Oscillator12CalcPhaseIncEf
- 387 00aa 85F87880 		strb	r8, [r5, #120]
- 388 00ae A5F89C70 		strh	r7, [r5, #156]	@ movhi
- 389 00b2 85ED240A 		vstr.32	s0, [r5, #144]
- 390 00b6 C5ED1F8A 		vstr.32	s17, [r5, #124]
- 391 00ba 234B     		ldr	r3, .L40+12
- 392 00bc 234D     		ldr	r5, .L40+16
- 393 00be C3ED008A 		vstr.32	s17, [r3]
- 394 00c2 5E60     		str	r6, [r3, #4]
- 395 00c4 C3ED028A 		vstr.32	s17, [r3, #8]
- 396 00c8 DE60     		str	r6, [r3, #12]
+ 374 0078 6C66     		str	r4, [r5, #100]	@ float
+ 375 007a 314C     		ldr	r4, .L40+8
+ 376 007c 05F15000 		add	r0, r5, #80
+ 377 0080 85ED100A 		vstr.32	s0, [r5, #64]
+ 378 0084 B0EE490A 		vmov.f32	s0, s18
+ 379 0088 A5F84C70 		strh	r7, [r5, #76]	@ movhi
+ 380 008c 04F58C7A 		add	r10, r4, #280
+ 381 0090 85F82880 		strb	r8, [r5, #40]
+ 382 0094 C5ED0B8A 		vstr.32	s17, [r5, #44]
+ 383 0098 85ED178A 		vstr.32	s16, [r5, #92]
+ 384 009c C5ED189A 		vstr.32	s19, [r5, #96]
+ 385 00a0 85ED169A 		vstr.32	s18, [r5, #88]
+ 386 00a4 FFF7FEFF 		bl	_ZN7daisysp10Oscillator12CalcPhaseIncEf
+ 387 00a8 264B     		ldr	r3, .L40+12
+ 388 00aa 85F85080 		strb	r8, [r5, #80]
+ 389 00ae A5F87470 		strh	r7, [r5, #116]	@ movhi
+ 390 00b2 85ED1A0A 		vstr.32	s0, [r5, #104]
+ 391 00b6 C5ED158A 		vstr.32	s17, [r5, #84]
+ 392 00ba 234D     		ldr	r5, .L40+16
+ 393 00bc C3ED008A 		vstr.32	s17, [r3]
+ 394 00c0 5E60     		str	r6, [r3, #4]
+ 395 00c2 C3ED028A 		vstr.32	s17, [r3, #8]
+ 396 00c6 DE60     		str	r6, [r3, #12]
  397              	.L37:
- 398 00ca 2046     		mov	r0, r4
- 399 00cc 4FF07E57 		mov	r7, #1065353216
- 400 00d0 3834     		adds	r4, r4, #56
- 401 00d2 DFF88490 		ldr	r9, .L40+28
- 402 00d6 DFF88480 		ldr	r8, .L40+32
- 403 00da 0026     		movs	r6, #0
- 404 00dc B0EE480A 		vmov.f32	s0, s16
- 405 00e0 FFF7FEFF 		bl	_ZN7daisysp5AdEnv4InitEf
- 406 00e4 2846     		mov	r0, r5
- 407 00e6 B0EE480A 		vmov.f32	s0, s16
- 408 00ea 44F8309C 		str	r9, [r4, #-48]	@ float
- 409 00ee 44F82C8C 		str	r8, [r4, #-44]	@ float
- 410 00f2 3835     		adds	r5, r5, #56
- 411 00f4 44F8207C 		str	r7, [r4, #-32]	@ float
- 412 00f8 44F8246C 		str	r6, [r4, #-36]	@ float
- 413 00fc FFF7FEFF 		bl	_ZN7daisysp5AdEnv4InitEf
- 414 0100 5445     		cmp	r4, r10
- 415 0102 45F8309C 		str	r9, [r5, #-48]	@ float
- 416 0106 45F82C8C 		str	r8, [r5, #-44]	@ float
- 417 010a 45F8207C 		str	r7, [r5, #-32]	@ float
- 418 010e 45F8246C 		str	r6, [r5, #-36]	@ float
- 419 0112 DAD1     		bne	.L37
- 420 0114 B0EE480A 		vmov.f32	s0, s16
- 421 0118 0D48     		ldr	r0, .L40+20
- 422 011a FFF7FEFF 		bl	_ZN7daisysp3Svf4InitEf
- 423 011e 9FED0D0A 		vldr.32	s0, .L40+24
- 424 0122 0B48     		ldr	r0, .L40+20
- 425 0124 FFF7FEFF 		bl	_ZN7daisysp3Svf7SetFreqEf
- 426 0128 B0EE000A 		vmov.f32	s0, #2.0e+0
- 427 012c 0848     		ldr	r0, .L40+20
- 428 012e BDEC048B 		vldm	sp!, {d8-d9}
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 8
+ 398 00c8 2046     		mov	r0, r4
+ 399 00ca 4FF07E57 		mov	r7, #1065353216
+ 400 00ce 3834     		adds	r4, r4, #56
+ 401 00d0 DFF88090 		ldr	r9, .L40+28
+ 402 00d4 DFF88080 		ldr	r8, .L40+32
+ 403 00d8 0026     		movs	r6, #0
+ 404 00da B0EE480A 		vmov.f32	s0, s16
+ 405 00de FFF7FEFF 		bl	_ZN7daisysp5AdEnv4InitEf
+ 406 00e2 2846     		mov	r0, r5
+ 407 00e4 B0EE480A 		vmov.f32	s0, s16
+ 408 00e8 44F8309C 		str	r9, [r4, #-48]	@ float
+ 409 00ec 44F82C8C 		str	r8, [r4, #-44]	@ float
+ 410 00f0 3835     		adds	r5, r5, #56
+ 411 00f2 44F8207C 		str	r7, [r4, #-32]	@ float
+ 412 00f6 44F8246C 		str	r6, [r4, #-36]	@ float
+ 413 00fa FFF7FEFF 		bl	_ZN7daisysp5AdEnv4InitEf
+ 414 00fe 5445     		cmp	r4, r10
+ 415 0100 45F8309C 		str	r9, [r5, #-48]	@ float
+ 416 0104 45F82C8C 		str	r8, [r5, #-44]	@ float
+ 417 0108 45F8207C 		str	r7, [r5, #-32]	@ float
+ 418 010c 45F8246C 		str	r6, [r5, #-36]	@ float
+ 419 0110 DAD1     		bne	.L37
+ 420 0112 B0EE480A 		vmov.f32	s0, s16
+ 421 0116 0D48     		ldr	r0, .L40+20
+ 422 0118 FFF7FEFF 		bl	_ZN7daisysp3Svf4InitEf
+ 423 011c 9FED0C0A 		vldr.32	s0, .L40+24
+ 424 0120 0A48     		ldr	r0, .L40+20
+ 425 0122 FFF7FEFF 		bl	_ZN7daisysp3Svf7SetFreqEf
+ 426 0126 B0EE000A 		vmov.f32	s0, #2.0e+0
+ 427 012a 0848     		ldr	r0, .L40+20
+ 428 012c BDEC048B 		vldm	sp!, {d8-d9}
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 8
 
 
- 429 0132 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
- 430 0136 FFF7FEBF 		b	_ZN7daisysp3Svf6SetResEf
+ 429 0130 BDE8F047 		pop	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 430 0134 FFF7FEBF 		b	_ZN7daisysp3Svf6SetResEf
  431              	.L41:
- 432 013a 00BF     		.align	2
+ 432              		.align	2
  433              	.L40:
- 434 013c 00000000 		.word	.LANCHOR4
- 435 0140 0000C842 		.word	1120403456
- 436 0144 00000000 		.word	.LANCHOR0
- 437 0148 00000000 		.word	.LANCHOR5
- 438 014c 00000000 		.word	.LANCHOR1
- 439 0150 00000000 		.word	.LANCHOR6
- 440 0154 0000FA45 		.word	1174011904
- 441 0158 0AD7233C 		.word	1008981770
- 442 015c CDCC4C3E 		.word	1045220557
+ 434 0138 00000000 		.word	.LANCHOR4
+ 435 013c 0000C842 		.word	1120403456
+ 436 0140 00000000 		.word	.LANCHOR0
+ 437 0144 00000000 		.word	.LANCHOR5
+ 438 0148 00000000 		.word	.LANCHOR1
+ 439 014c 00000000 		.word	.LANCHOR6
+ 440 0150 0000FA45 		.word	1174011904
+ 441 0154 0AD7233C 		.word	1008981770
+ 442 0158 CDCC4C3E 		.word	1045220557
  444              		.section	.text._Z6SetSeqPbb,"ax",%progbits
  445              		.align	1
  446              		.p2align 2,,3
@@ -478,7 +478,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  487 0030 B1EE040A 		vmov.f32	s0, #5.0e+0
  488 0034 DDED010A 		vldr.32	s1, [sp, #4]	@ int
  489 0038 0848     		ldr	r0, .L46+4
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 9
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 9
 
 
  490 003a FFF7FEFF 		bl	_ZN7daisysp5Metro4InitEff
@@ -538,7 +538,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  548 0004 FFF7FEFF 		bl	_ZN7daisysp5Metro7ProcessEv
  549 0008 E0B1     		cbz	r0, .L51
  550 000a 104D     		ldr	r5, .L68+4
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 10
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 10
 
 
  551 000c 0024     		movs	r4, #0
@@ -598,7 +598,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  607 0016 9FED106B 		vldr.64	d6, .L74
  608 001a B0EEC77A 		vabs.f32	s14, s14
  609 001e B7EEC77A 		vcvt.f64.f32	d7, s14
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 11
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 11
 
 
  610 0022 B4EEC67B 		vcmpe.f64	d7, d6
@@ -658,7 +658,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  666 0024 0023     		movs	r3, #0
  667 0026 2B60     		str	r3, [r5]	@ float
  668              	.L79:
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 12
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 12
 
 
  669 0028 3B68     		ldr	r3, [r7]
@@ -718,7 +718,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  723              	.L82:
  724 00b4 02EB8304 		add	r4, r2, r3, lsl #2
  725 00b8 01EB8300 		add	r0, r1, r3, lsl #2
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 13
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 13
 
 
  726 00bc 0133     		adds	r3, r3, #1
@@ -778,7 +778,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  781              		.syntax unified
  782              		.thumb
  783              		.thumb_func
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 14
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 14
 
 
  784              		.fpu fpv5-d16
@@ -838,7 +838,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  841              	_Z15ProcessControlsv:
  842              		@ args = 0, pretend = 0, frame = 0
  843              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 15
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 15
 
 
  844 0000 38B5     		push	{r3, r4, r5, lr}
@@ -898,7 +898,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  898 0094 4D62403F 		.word	1061184077
  899 0098 00000000 		.word	.LANCHOR3
  900 009c 00000000 		.word	.LANCHOR12
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 16
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 16
 
 
  901 00a0 00000000 		.word	.LANCHOR2
@@ -958,7 +958,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  957 006c FFF7FEFF 		bl	_ZN7daisysp10Oscillator12CalcPhaseIncEf
  958 0070 2B48     		ldr	r0, .L119+16
  959 0072 86ED018A 		vstr.32	s16, [r6, #4]
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 17
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 17
 
 
  960 0076 86ED060A 		vstr.32	s0, [r6, #24]
@@ -1018,7 +1018,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1014 0134 00000000 		.word	.LANCHOR1
  1015 0138 00000030 		.word	805306368
  1016 013c 00000000 		.word	.LANCHOR6
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 18
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 18
 
 
  1018              		.section	.text.startup._GLOBAL__sub_I_kvals,"ax",%progbits
@@ -1078,7 +1078,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1073 0070 00000000 		.word	_ZN5daisy10DaisyFieldD1Ev
  1074 0074 00000000 		.word	__tcf_0
  1075 0078 00000000 		.word	__tcf_1
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 19
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 19
 
 
  1076 007c 00000000 		.word	__tcf_2
@@ -1091,11 +1091,11 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1084              		.align	2
  1085 0000 00000000 		.word	_GLOBAL__sub_I_kvals(target1)
  1086              		.global	stepLED
- 1087              		.global	tempo
- 1088              		.global	k6old
+ 1087              		.global	k6old
+ 1088              		.global	Step
  1089              		.global	Drum
  1090              		.global	mode
- 1091              		.global	Step
+ 1091              		.global	tempo
  1092              		.global	Seq
  1093              		.global	tick
  1094              		.global	flt
@@ -1138,7 +1138,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1131 0030 0500     		.short	5
  1132 0032 0600     		.short	6
  1133 0034 0700     		.short	7
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 20
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 20
 
 
  1134 0036 0800     		.short	8
@@ -1198,7 +1198,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1188 00a2 A500     		.short	165
  1189 00a4 AB00     		.short	171
  1190 00a6 B100     		.short	177
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 21
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 21
 
 
  1191 00a8 B700     		.short	183
@@ -1258,7 +1258,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1245 0114 DE02     		.short	734
  1246 0116 ED02     		.short	749
  1247 0118 FC02     		.short	764
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 22
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 22
 
 
  1248 011a 0B03     		.short	779
@@ -1318,7 +1318,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1302 0186 8C07     		.short	1932
  1303 0188 A807     		.short	1960
  1304 018a C407     		.short	1988
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 23
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 23
 
 
  1305 018c E107     		.short	2017
@@ -1378,7 +1378,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1359 01f8 7A0F     		.short	3962
  1360 01fa A60F     		.short	4006
  1361 01fc D20F     		.short	4050
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 24
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 24
 
 
  1362 01fe FF0F     		.short	4095
@@ -1438,7 +1438,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1411              		.align	2
  1412              		.set	.LANCHOR11,. + 0
  1415              	kvals:
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 25
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 25
 
 
  1416 0000 00000000 		.space	32
@@ -1498,7 +1498,7 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1466 0008 00000000 		.word	_Z3Hatv
  1467 000c 00000000 		.word	_Z5Laserv
  1468 0010 00000000 		.word	_Z3Tomv
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 26
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 26
 
 
  1469              		.section	.data.keyboard_leds,"aw"
@@ -1528,127 +1528,127 @@ ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 1
  1497 0000 00004040 		.word	1077936128
  1498              		.hidden	__dso_handle
  1499              		.ident	"GCC: (GNU Arm Embedded Toolchain 10-2020-q4-major) 10.2.1 20201103 (release)"
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 27
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 27
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 Fake08.cpp
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:15     .text._ZN7daisysp3SvfD2Ev:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:24     .text._ZN7daisysp3SvfD2Ev:0000000000000000 _ZN7daisysp3SvfD2Ev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:24     .text._ZN7daisysp3SvfD2Ev:0000000000000000 _ZN7daisysp3SvfD1Ev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:33     .text._ZN7daisysp5MetroD2Ev:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:41     .text._ZN7daisysp5MetroD2Ev:0000000000000000 _ZN7daisysp5MetroD2Ev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:41     .text._ZN7daisysp5MetroD2Ev:0000000000000000 _ZN7daisysp5MetroD1Ev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:50     .text._ZN5daisy10DaisyFieldD2Ev:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:58     .text._ZN5daisy10DaisyFieldD2Ev:0000000000000000 _ZN5daisy10DaisyFieldD2Ev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:58     .text._ZN5daisy10DaisyFieldD2Ev:0000000000000000 _ZN5daisy10DaisyFieldD1Ev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:67     .text._Z4Kickv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:75     .text._Z4Kickv:0000000000000000 _Z4Kickv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:88     .text._Z4Kickv:0000000000000010 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:92     .text._Z5Snarev:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:100    .text._Z5Snarev:0000000000000000 _Z5Snarev
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:111    .text._Z5Snarev:000000000000000c $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:114    .text._Z3Hatv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:122    .text._Z3Hatv:0000000000000000 _Z3Hatv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:133    .text._Z3Hatv:000000000000000c $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:136    .text._Z5Laserv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:144    .text._Z5Laserv:0000000000000000 _Z5Laserv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:157    .text._Z5Laserv:0000000000000010 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:161    .text._Z3Tomv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:169    .text._Z3Tomv:0000000000000000 _Z3Tomv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:180    .text._Z3Tomv:000000000000000c $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:183    .text.__tcf_0:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:190    .text.__tcf_0:0000000000000000 __tcf_0
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:197    .text.__tcf_2:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:204    .text.__tcf_2:0000000000000000 __tcf_2
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:211    .text.__tcf_3:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:218    .text.__tcf_3:0000000000000000 __tcf_3
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:225    .text.__tcf_1:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:232    .text.__tcf_1:0000000000000000 __tcf_1
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:239    .text._ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:247    .text._ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE:0000000000000000 _ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:290    .text._ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE:0000000000000050 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:293    .text._Z12UpdateSwitchv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:301    .text._Z12UpdateSwitchv:0000000000000000 _Z12UpdateSwitchv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:325    .text._Z12UpdateSwitchv:0000000000000028 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:329    .text._Z10SetupDrumsf:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:337    .text._Z10SetupDrumsf:0000000000000000 _Z10SetupDrumsf
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:434    .text._Z10SetupDrumsf:000000000000013c $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:445    .text._Z6SetSeqPbb:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:453    .text._Z6SetSeqPbb:0000000000000000 _Z6SetSeqPbb
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:461    .text.startup.main:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:469    .text.startup.main:0000000000000000 main
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:505    .text.startup.main:0000000000000058 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:915    .text._Z13AudioCallbackPfS_j:0000000000000000 _Z13AudioCallbackPfS_j
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:511    .text._Z14IncrementStepsv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:519    .text._Z14IncrementStepsv:0000000000000000 _Z14IncrementStepsv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:532    .text._Z14IncrementStepsv:0000000000000010 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:535    .text._Z11ProcessTickv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:543    .text._Z11ProcessTickv:0000000000000000 _Z11ProcessTickv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:583    .text._Z11ProcessTickv:0000000000000048 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:589    .text._Z11UpdateTempov:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:597    .text._Z11UpdateTempov:0000000000000000 _Z11UpdateTempov
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 28
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:15     .text._ZN7daisysp3SvfD2Ev:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:24     .text._ZN7daisysp3SvfD2Ev:0000000000000000 _ZN7daisysp3SvfD2Ev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:24     .text._ZN7daisysp3SvfD2Ev:0000000000000000 _ZN7daisysp3SvfD1Ev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:33     .text._ZN7daisysp5MetroD2Ev:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:41     .text._ZN7daisysp5MetroD2Ev:0000000000000000 _ZN7daisysp5MetroD2Ev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:41     .text._ZN7daisysp5MetroD2Ev:0000000000000000 _ZN7daisysp5MetroD1Ev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:50     .text._ZN5daisy10DaisyFieldD2Ev:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:58     .text._ZN5daisy10DaisyFieldD2Ev:0000000000000000 _ZN5daisy10DaisyFieldD2Ev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:58     .text._ZN5daisy10DaisyFieldD2Ev:0000000000000000 _ZN5daisy10DaisyFieldD1Ev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:67     .text._Z4Kickv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:75     .text._Z4Kickv:0000000000000000 _Z4Kickv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:88     .text._Z4Kickv:0000000000000010 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:92     .text._Z5Snarev:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:100    .text._Z5Snarev:0000000000000000 _Z5Snarev
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:111    .text._Z5Snarev:000000000000000c $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:114    .text._Z3Hatv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:122    .text._Z3Hatv:0000000000000000 _Z3Hatv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:133    .text._Z3Hatv:000000000000000c $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:136    .text._Z5Laserv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:144    .text._Z5Laserv:0000000000000000 _Z5Laserv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:157    .text._Z5Laserv:0000000000000010 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:161    .text._Z3Tomv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:169    .text._Z3Tomv:0000000000000000 _Z3Tomv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:180    .text._Z3Tomv:000000000000000c $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:183    .text.__tcf_0:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:190    .text.__tcf_0:0000000000000000 __tcf_0
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:197    .text.__tcf_2:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:204    .text.__tcf_2:0000000000000000 __tcf_2
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:211    .text.__tcf_3:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:218    .text.__tcf_3:0000000000000000 __tcf_3
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:225    .text.__tcf_1:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:232    .text.__tcf_1:0000000000000000 __tcf_1
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:239    .text._ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:247    .text._ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE:0000000000000000 _ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:290    .text._ZN5daisy16LedDriverPca9685ILi2ELb1EE14TxCpltCallbackEPvNS_9I2CHandle6ResultE:0000000000000050 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:293    .text._Z12UpdateSwitchv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:301    .text._Z12UpdateSwitchv:0000000000000000 _Z12UpdateSwitchv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:325    .text._Z12UpdateSwitchv:0000000000000028 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:329    .text._Z10SetupDrumsf:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:337    .text._Z10SetupDrumsf:0000000000000000 _Z10SetupDrumsf
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:434    .text._Z10SetupDrumsf:0000000000000138 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:445    .text._Z6SetSeqPbb:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:453    .text._Z6SetSeqPbb:0000000000000000 _Z6SetSeqPbb
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:461    .text.startup.main:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:469    .text.startup.main:0000000000000000 main
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:505    .text.startup.main:0000000000000058 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:915    .text._Z13AudioCallbackPfS_j:0000000000000000 _Z13AudioCallbackPfS_j
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:511    .text._Z14IncrementStepsv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:519    .text._Z14IncrementStepsv:0000000000000000 _Z14IncrementStepsv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:532    .text._Z14IncrementStepsv:0000000000000010 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:535    .text._Z11ProcessTickv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:543    .text._Z11ProcessTickv:0000000000000000 _Z11ProcessTickv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:583    .text._Z11ProcessTickv:0000000000000048 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:589    .text._Z11UpdateTempov:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:597    .text._Z11UpdateTempov:0000000000000000 _Z11UpdateTempov
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 28
 
 
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:631    .text._Z11UpdateTempov:0000000000000058 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:639    .text._Z10UpdateLedsv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:647    .text._Z10UpdateLedsv:0000000000000000 _Z10UpdateLedsv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:767    .text._Z10UpdateLedsv:000000000000011c $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:778    .text._Z10UpdateVarsv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:786    .text._Z10UpdateVarsv:0000000000000000 _Z10UpdateVarsv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:824    .text._Z10UpdateVarsv:0000000000000078 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:833    .text._Z15ProcessControlsv:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:841    .text._Z15ProcessControlsv:0000000000000000 _Z15ProcessControlsv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:897    .text._Z15ProcessControlsv:0000000000000090 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:907    .text._Z13AudioCallbackPfS_j:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1005   .text._Z13AudioCallbackPfS_j:0000000000000110 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1019   .text.startup._GLOBAL__sub_I_kvals:0000000000000000 $t
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1026   .text.startup._GLOBAL__sub_I_kvals:0000000000000000 _GLOBAL__sub_I_kvals
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1070   .text.startup._GLOBAL__sub_I_kvals:0000000000000064 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1084   .init_array:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1449   .bss.stepLED:0000000000000000 stepLED
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1496   .data.tempo:0000000000000000 tempo
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1408   .bss.k6old:0000000000000000 k6old
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1463   .data.Drum:0000000000000000 Drum
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1421   .bss.mode:0000000000000000 mode
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1374   .bss.Step:0000000000000000 Step
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1368   .bss.Seq:0000000000000000 Seq
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1456   .bss.tick:0000000000000000 tick
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1394   .bss.flt:0000000000000000 flt
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1442   .bss.pitchEnv:0000000000000000 pitchEnv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1381   .bss.ampEnv:0000000000000000 ampEnv
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1428   .bss.noise:0000000000000000 noise
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1435   .bss.osc:0000000000000000 osc
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1474   .data.keyboard_leds:0000000000000000 keyboard_leds
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1387   .bss.buttons:0000000000000000 buttons
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1401   .bss.hardware:0000000000000000 hardware
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1415   .bss.kvals:0000000000000000 kvals
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1104   .rodata:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1364   .bss.Seq:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1375   .bss.Step:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1377   .bss.ampEnv:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1384   .bss.buttons:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1390   .bss.flt:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1397   .bss.hardware:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1404   .bss.k6old:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1411   .bss.kvals:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1422   .bss.mode:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1424   .bss.noise:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1431   .bss.osc:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1438   .bss.pitchEnv:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1445   .bss.stepLED:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1452   .bss.tick:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1459   .data.Drum:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1470   .data.keyboard_leds:0000000000000000 $d
-/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s:1492   .data.tempo:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:631    .text._Z11UpdateTempov:0000000000000058 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:639    .text._Z10UpdateLedsv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:647    .text._Z10UpdateLedsv:0000000000000000 _Z10UpdateLedsv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:767    .text._Z10UpdateLedsv:000000000000011c $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:778    .text._Z10UpdateVarsv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:786    .text._Z10UpdateVarsv:0000000000000000 _Z10UpdateVarsv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:824    .text._Z10UpdateVarsv:0000000000000078 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:833    .text._Z15ProcessControlsv:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:841    .text._Z15ProcessControlsv:0000000000000000 _Z15ProcessControlsv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:897    .text._Z15ProcessControlsv:0000000000000090 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:907    .text._Z13AudioCallbackPfS_j:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1005   .text._Z13AudioCallbackPfS_j:0000000000000110 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1019   .text.startup._GLOBAL__sub_I_kvals:0000000000000000 $t
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1026   .text.startup._GLOBAL__sub_I_kvals:0000000000000000 _GLOBAL__sub_I_kvals
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1070   .text.startup._GLOBAL__sub_I_kvals:0000000000000064 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1084   .init_array:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1449   .bss.stepLED:0000000000000000 stepLED
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1408   .bss.k6old:0000000000000000 k6old
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1374   .bss.Step:0000000000000000 Step
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1463   .data.Drum:0000000000000000 Drum
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1421   .bss.mode:0000000000000000 mode
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1496   .data.tempo:0000000000000000 tempo
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1368   .bss.Seq:0000000000000000 Seq
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1456   .bss.tick:0000000000000000 tick
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1394   .bss.flt:0000000000000000 flt
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1442   .bss.pitchEnv:0000000000000000 pitchEnv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1381   .bss.ampEnv:0000000000000000 ampEnv
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1428   .bss.noise:0000000000000000 noise
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1435   .bss.osc:0000000000000000 osc
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1474   .data.keyboard_leds:0000000000000000 keyboard_leds
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1387   .bss.buttons:0000000000000000 buttons
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1401   .bss.hardware:0000000000000000 hardware
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1415   .bss.kvals:0000000000000000 kvals
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1104   .rodata:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1364   .bss.Seq:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1375   .bss.Step:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1377   .bss.ampEnv:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1384   .bss.buttons:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1390   .bss.flt:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1397   .bss.hardware:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1404   .bss.k6old:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1411   .bss.kvals:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1422   .bss.mode:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1424   .bss.noise:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1431   .bss.osc:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1438   .bss.pitchEnv:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1445   .bss.stepLED:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1452   .bss.tick:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1459   .data.Drum:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1470   .data.keyboard_leds:0000000000000000 $d
+/var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s:1492   .data.tempo:0000000000000000 $d
                            .group:0000000000000000 _ZN7daisysp3SvfD5Ev
                            .group:0000000000000000 _ZN7daisysp5MetroD5Ev
                            .group:0000000000000000 _ZN5daisy10DaisyFieldD5Ev
 
 UNDEFINED SYMBOLS
 _ZN5daisy9I2CHandle11TransmitDmaEtPhtPFvPvNS0_6ResultEES2_
-ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc17TnaL.s 			page 29
+ARM GAS  /var/folders/sj/m2p5rq1x7lz4zl2q3d5y9hzm0000gn/T//cc6Dbafy.s 			page 29
 
 
 _ZNK5daisy9I2CHandle9GetConfigEv

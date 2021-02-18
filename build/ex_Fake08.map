@@ -2196,17 +2196,18 @@ LOAD /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-
                 0x0000000008000714       0x54 build/Fake08.o
                 0x0000000008000714                daisy::LedDriverPca9685<2, true>::TxCpltCallback(void*, daisy::I2CHandle::Result)
  .text._Z10SetupDrumsf
-                0x0000000008000768      0x160 build/Fake08.o
+                0x0000000008000768      0x15c build/Fake08.o
                 0x0000000008000768                SetupDrums(float)
  .text.startup.main
-                0x00000000080008c8       0x68 build/Fake08.o
-                0x00000000080008c8                main
+                0x00000000080008c4       0x68 build/Fake08.o
+                0x00000000080008c4                main
  .text._Z11ProcessTickv
-                0x0000000008000930       0x58 build/Fake08.o
-                0x0000000008000930                ProcessTick()
+                0x000000000800092c       0x58 build/Fake08.o
+                0x000000000800092c                ProcessTick()
  .text._Z10UpdateLedsv
-                0x0000000008000988      0x140 build/Fake08.o
-                0x0000000008000988                UpdateLeds()
+                0x0000000008000984      0x140 build/Fake08.o
+                0x0000000008000984                UpdateLeds()
+ *fill*         0x0000000008000ac4        0x4 
  .text._Z10UpdateVarsv
                 0x0000000008000ac8       0x94 build/Fake08.o
                 0x0000000008000ac8                UpdateVars()
