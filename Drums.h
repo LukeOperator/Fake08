@@ -1,4 +1,3 @@
-
 #include "daisysp.h"
 #include "daisy_field.h"
 
@@ -49,7 +48,7 @@ WhiteNoise noise[2];
 AdEnv     ampEnv[NUM_MODES];
 AdEnv     pitchEnv[NUM_MODES];
 
-//filter fo the hat
+//filter for the hat
 Svf flt;
 
 //metronome
@@ -62,12 +61,14 @@ bool    Seq[NUM_MODES][MAX_LENGTH];
 float tempo = 3;
 
 
-
 //function to process each step in a sequence
 void ProcessTick();
 //function to process changes in sequence
 void ProcessControls();
 
+
+//TODO design more interesting sounds
+//e.g. kick should be a snap of noise into res filter like early MUTE stuff. Dev in Max first
 void Kick()
 {
   ampEnv[0].Trigger();
