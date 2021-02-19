@@ -26,7 +26,7 @@ void AudioCallback(float* in, float* out, size_t size)
         kck_env_out = ampEnv[0].Process();
         hat_env_out = ampEnv[2].Process();
 
-        //oscillator freq is the kickPitchEnv value
+        //oscillator freq is the kick pitchEnv value
         osc[0].SetFreq(pitchEnv[0].Process());
         //set oscillator amp to the value of the envelope
         osc[0].SetAmp(kck_env_out);
@@ -42,7 +42,8 @@ void AudioCallback(float* in, float* out, size_t size)
         hat_out = flt.High();
         hat_out *= hat_env_out;
 
-        //add each signal together at -6dB
+        //add each signal together (divide by number of sources)
+        //TODO add gain control to each mode
          sig = .3 * noise_out + .3 * osc_out + .3 * hat_out;
 
          //output resultant signal to both stereo channels
@@ -52,6 +53,7 @@ void AudioCallback(float* in, float* out, size_t size)
 }
 
 //switches used to select whether affecting kick or snare sequence
+// TODO assign mode changes to 8th knob, use buttons for start / stop
 uint8_t mode = 0;
 void    UpdateSwitch()
 {
@@ -63,6 +65,7 @@ void    UpdateSwitch()
 void SetupDrums(float samplerate)
 {
     //initialise the oscillator object with sample rate and set waveform and amplitude
+    //TODO add more sounds
     osc[0].Init(samplerate);
     osc[0].SetWaveform(Oscillator::WAVE_TRI);
     osc[0].SetAmp(1);
@@ -104,6 +107,8 @@ void SetupDrums(float samplerate)
     flt.SetRes(2);
 }
 
+
+//put our drums into an array of function pointers so they can be called by mode number in loop later 
 typedef void (*Drummer)();
 
 Drummer Drum[] = {Kick, Snare, Hat, Laser, Tom};
@@ -111,8 +116,8 @@ Drummer Drum[] = {Kick, Snare, Hat, Laser, Tom};
 //function for setting the sequence
 void SetSeq(bool* seq, bool in)
 {
-  //unint32_t - unsigned 32-bit integer type
-  //for every step in the sequence, apply the steps to the input
+  //unint8_t - unsigned 8-bit integer type
+  //initialising array with 0s
     for(uint8_t i = 0; i < MAX_LENGTH; i++)
     {
         seq[i] = in;
@@ -132,7 +137,7 @@ int main(void)
     //setup the drum sounds - call the above function
     SetupDrums(samplerate);
 
-    //5 ticks per callback? 5 callbacks per tick?
+    //TODO read Metro reference
     tick.Init(5, callbackrate);
 
     for (uint8_t i = 0; i < NUM_MODES; i++)
@@ -168,9 +173,10 @@ void ProcessTick()
     {
       //see above
         IncrementSteps();
-      //if there is supposed to be a kick on this step
+      
         for (uint8_t i = 0; i < NUM_MODES; i++)
         {
+         //if there is supposed to be a drum trigger on this step
           if(Seq[i][Step])
           {
             Drum[i]();
@@ -184,8 +190,9 @@ float k6old            = 0.f;
 void  UpdateTempo()
 {
   float k6 = kvals[6];
-//if 8th knob has moved more than 0.0005, assign new value to tempo
+//if 7th knob has moved more than 0.0005, assign new value to tempo
     if (abs(k6 - k6old)> 0.0005){
+      // TODO Logarithms mate
         tempo = (8 * k6) + 1;
     }
     tick.SetFreq(tempo);
@@ -197,6 +204,7 @@ float stepLED = 0;
 void UpdateLeds()
 {
   //if you press the button, switch the step on / off
+  // TODO lots of if statements here, there should be a better way
   for(size_t i = 0; i < 16; i++)
   {
     if(hardware.KeyboardRisingEdge(i))
@@ -225,7 +233,8 @@ void UpdateLeds()
 
 void UpdateVars()
 { 
-
+  //TODO make controls mode dependent
+  //knobs 1-4 assign to drum timbre, 5-8 global (mode change, tempo, reverb(?)
     ampEnv[0].SetTime(ADENV_SEG_DECAY, kvals[2] * 0.5 + 0.05);
     pitchEnv[0].SetTime(ADENV_SEG_DECAY, kvals[3] * 0.5 + 0.05);
     //pitch runs from 400Hz to 50Hz
