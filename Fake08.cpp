@@ -5,7 +5,7 @@
 void AudioCallback(float* in, float* out, size_t size)
 {
   //floats here are effectively signals, sig being the output
-    float osc_out, noise_out, snr_env_out, kck_env_out, hat_env_out, hat_out, sig;
+    float kick_out, noise_out, snr_env_out, hat_env_out, hat_out, sig;
 
      for(int i = 0; i < NUM_CONTROLS; i++)
     {
@@ -13,7 +13,6 @@ void AudioCallback(float* in, float* out, size_t size)
     }
     //call ProcessTick (defined below)
     ProcessTick();
-
 
     //call ProcessControls (defined below)
     ProcessControls();
@@ -23,43 +22,29 @@ void AudioCallback(float* in, float* out, size_t size)
     {
         //envelope signals
         snr_env_out = ampEnv[1].Process();
-        kck_env_out = ampEnv[0].Process();
         hat_env_out = ampEnv[2].Process();
 
-        //oscillator freq is the kick pitchEnv value
-        osc[0].SetFreq(pitchEnv[0].Process());
-        //set oscillator amp to the value of the envelope
-        osc[0].SetAmp(kck_env_out);
-        //set the float osc_out to be the current value of the oscillator
-        osc_out = osc[0].Process();
-
+        ping.SetFreq(pitchEnv[0].Process());
+        kick_out = ping.Process(trig);
         //multiply noise by snare env for snare sound
         noise_out = noise[0].Process();
         noise_out *= snr_env_out;
 
         hat_out = noise[1].Process();
         flt.Process(hat_out);
-        hat_out = flt.High();
+        hat_out = flt.Band();
         hat_out *= hat_env_out;
 
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-         sig = .3 * noise_out + .3 * osc_out + .3 * hat_out;
+        sig = .3 * noise_out + .3 * kick_out + .3 * hat_out;
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
         out[i + 1] = sig;
-    }
-}
+        trig = 0;
 
-//switches used to select whether affecting kick or snare sequence
-// TODO assign mode changes to 8th knob, use buttons for start / stop
-uint8_t mode = 0;
-void    UpdateSwitch()
-{
-    mode += hardware.sw[0].RisingEdge() ? -1 : 0;
-    mode += hardware.sw[1].RisingEdge() ? 1 : 0;
-    mode = DSY_MIN(DSY_MAX(0, mode), 4);
+    }
 }
 
 void SetupDrums(float samplerate)
@@ -103,8 +88,15 @@ void SetupDrums(float samplerate)
     }
 
     flt.Init(samplerate);
+    flt.SetRes(1);
     flt.SetFreq(8000);
-    flt.SetRes(2);
+
+    pitchEnv[0].SetMin(50);
+    ping.Init(samplerate, init_buff, 128, PLUCK_MODE_WEIGHTED_AVERAGE);
+    ping.SetAmp(1);
+    ping.SetFreq(50);
+    ping.SetDamp(0.8);
+    ping.SetDecay(0.2);
 }
 
 
@@ -116,11 +108,32 @@ Drummer Drum[] = {Kick, Snare, Hat, Laser, Tom};
 //function for setting the sequence
 void SetSeq(bool* seq, bool in)
 {
-  //unint8_t - unsigned 8-bit integer type
   //initialising array with 0s
     for(uint8_t i = 0; i < MAX_LENGTH; i++)
     {
         seq[i] = in;
+    }
+}
+
+void    UpdateSwitch()
+{
+    //left switch triggers one shot of current drum
+    if(hardware.sw[0].RisingEdge())
+    {
+      Drum[mode]();
+    }
+
+    //right switch start and stop
+    if(hardware.sw[1].RisingEdge())
+    {
+      if (tick.GetFreq())
+      {
+        tick.SetFreq(0);
+      }
+      else
+      {
+        tick.SetFreq(tempo);
+      }
     }
 }
 
@@ -137,12 +150,13 @@ int main(void)
     //setup the drum sounds - call the above function
     SetupDrums(samplerate);
 
-    //TODO read Metro reference
+    //Starts at 5 Hz
     tick.Init(5, callbackrate);
 
     for (uint8_t i = 0; i < NUM_MODES; i++)
       {
         SetSeq(Seq[i], 0);
+        kold[i] = 0;
       }
 
     //turn on DSP
@@ -185,18 +199,20 @@ void ProcessTick()
     }
 }
 
-float k6old            = 0.f;
 
 void  UpdateTempo()
 {
   float k6 = kvals[6];
 //if 7th knob has moved more than 0.0005, assign new value to tempo
-    if (abs(k6 - k6old)> 0.0005){
+    if (abs(k6 - kold[6])> 0.0005){
       // TODO Logarithms mate
-        tempo = (8 * k6) + 1;
+        tempo = (8 * k6) + 3;
     }
-    tick.SetFreq(tempo);
-    k6old = k6;
+    if (tick.GetFreq())
+    {
+      tick.SetFreq(tempo);
+    }
+    kold[6] = k6;
 }
 
 float stepLED = 0;
@@ -233,15 +249,44 @@ void UpdateLeds()
 
 void UpdateVars()
 { 
-  //TODO make controls mode dependent
-  //knobs 1-4 assign to drum timbre, 5-8 global (mode change, tempo, reverb(?)
-    ampEnv[0].SetTime(ADENV_SEG_DECAY, kvals[2] * 0.5 + 0.05);
-    pitchEnv[0].SetTime(ADENV_SEG_DECAY, kvals[3] * 0.5 + 0.05);
-    //pitch runs from 400Hz to 50Hz
-    pitchEnv[0].SetMax(kvals[1]*200 + 200);
-    pitchEnv[0].SetMin(kvals[0]*50 + 50);
+  //currently values change when you change page
+  // requires comparison of parameter value, kval and kold??
+  // look into Daisy Type Parameter
+  switch (mode)
+  {
+    //kick drum vars
+  case 0:
+    pitchEnv[mode].SetTime(ADENV_SEG_DECAY, kvals[0] * 0.5 + 0.05);
+    pitchEnv[mode].SetMax(kvals[1]*100 + 50);
+    ping.SetDamp(kvals[2]);
+    ping.SetDecay(kvals[3]);
+    ping.SetAmp(kvals[4]);
+    break;
 
-    ampEnv[1].SetTime(ADENV_SEG_DECAY, kvals[5]  * 0.5 + 0.05);
+    //snare vars
+  case 1:
+    ampEnv[mode].SetTime(ADENV_SEG_DECAY, kvals[0] * 0.5 + 0.05);
+    ampEnv[mode].SetMax(kvals[4]);
+    break;
+
+    //hi-hat vars
+  case 2:
+    ampEnv[mode].SetTime(ADENV_SEG_DECAY, kvals[0] * 0.5 + 0.05);
+    flt.SetFreq(4000 + (kvals[1]*6000));
+    ampEnv[mode].SetMax(kvals[4]);
+    break;
+
+  default:
+    break;
+  }
+
+    //TODO this creates only 4 modes, lots of dead space at the bottom
+    float k7 = std::floor(kvals[7] * (NUM_MODES - 1));
+    if (abs(k7 - kold[7])>=1)
+    {
+      mode = k7;
+      kold[7] = k7;
+    }
 }
 
 //every callback, update the controls

@@ -12,7 +12,13 @@ using namespace daisysp;
 #define NUM_CONTROLS 8
 #define NUM_MODES 5
 
+float params[NUM_MODES][5]; 
+
 float kvals[NUM_CONTROLS];
+float kold[NUM_CONTROLS];
+
+
+float trig = 0.0f;
 
 //We have one Daisy Field
 DaisyField hardware;
@@ -51,13 +57,19 @@ AdEnv     pitchEnv[NUM_MODES];
 //filter for the hat
 Svf flt;
 
+Pluck ping;
+float init_buff[256];
+
 //metronome
 Metro     tick;
 
+//use this to change pages
+uint8_t mode = 0;
+uint8_t oldMode = 0;
 //2D array of no. of drums x no. of steps
 bool    Seq[NUM_MODES][MAX_LENGTH];
 
-//default tempo of 3 (assuming Hz)
+//default tempo of 3 Hz
 float tempo = 3;
 
 
@@ -67,11 +79,11 @@ void ProcessTick();
 void ProcessControls();
 
 
-//TODO design more interesting sounds
+//TODO design more interesting sounds. KS for kick drum is a bit too toned
 //e.g. kick should be a snap of noise into res filter like early MUTE stuff. Dev in Max first
 void Kick()
 {
-  ampEnv[0].Trigger();
+  trig = 1.0f;
   pitchEnv[0].Trigger();
 }
 void Snare()
