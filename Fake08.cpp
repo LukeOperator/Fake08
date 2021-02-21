@@ -28,7 +28,7 @@ void AudioCallback(float* in, float* out, size_t size)
 
         
         
-        kick_out = kck.Process(kick_noise * kick_env_out);
+        kick_out = (kick_noise * kick_env_out);
 
         //multiply noise by snare env for snare sound
         
@@ -39,7 +39,7 @@ void AudioCallback(float* in, float* out, size_t size)
 
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-        sig = (snare_out + kick_out + hat_out);
+        sig = (snare_out + (kick_out) + hat_out);
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
@@ -72,13 +72,13 @@ void SetupDrums(float samplerate)
   for (uint8_t i = 0; i < NUM_MODES; i++)
     { 
       osc[i].Init(samplerate);
-      osc[i].SetWaveform(Oscillator::WAVE_POLYBLEP_SAW);
+      osc[i].SetWaveform(Oscillator::WAVE_SIN);
       osc[i].SetFreq(100);
       osc[i].SetAmp(1);
       //initialise the envelopes
       ampEnv[i].Init(samplerate);
       //use the function SetTime and aim it at the envelope's attack segment
-      ampEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01);
+      ampEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01f);
       //use the function SetTime and aim it at the envelope's decay segment
       ampEnv[i].SetTime(ADENV_SEG_DECAY, .2);
       //set the envelope to travel between 0 and 1
@@ -86,7 +86,7 @@ void SetupDrums(float samplerate)
       ampEnv[i].SetMin(0);
 
       pitchEnv[i].Init(samplerate);
-      pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01);
+      pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01f);
       pitchEnv[i].SetTime(ADENV_SEG_DECAY, .2);
       pitchEnv[i].SetMax(1);
       pitchEnv[i].SetMin(0);
@@ -94,15 +94,15 @@ void SetupDrums(float samplerate)
 
     flt.Init(samplerate);
     flt.SetRes(0.5);
-    flt.SetFreq(8000);
+    flt.SetCutoff(8000);
 
     kck.Init(samplerate);
-    kck.SetFreq(80);
+    kck.SetCutoff(80);
     kck.SetRes(0.5);
 
     sn.Init(samplerate);
     sn.SetRes(0.5);
-    sn.SetFreq(1000);
+    sn.SetCutoff(1000);
 
 }
 
@@ -155,7 +155,7 @@ int main(void)
     float callbackrate = hardware.AudioCallbackRate();
 
     //init knobs for parameters
-    p_Pitch.Init(hardware.knob[0], 0, 1, Parameter::LOGARITHMIC);
+    p_Pitch.Init(hardware.knob[0], 0, 1, Parameter::EXPONENTIAL);
     p_Dec.Init(hardware.knob[1], 0, 1, Parameter::LINEAR);
     p_Fx.Init(hardware.knob[2], 0, 1, Parameter::LINEAR);
     p_Amp.Init(hardware.knob[3], 0, 1, Parameter::LINEAR);
@@ -292,15 +292,15 @@ void UpdateVars()
   //unique vals and fX levels
 
   //kick
-  kck.SetFreq(params[0][0] * mPitch[0] + oPitch[0]);
+  osc[0].SetFreq(params[0][0] * mPitch[0] + oPitch[0]);
   kck.SetRes(params[0][2]);
 
   //snare
-  sn.SetFreq(params[1][0] * mPitch[1] + oPitch[1]);
+  sn.SetCutoff(params[1][0] * mPitch[1] + oPitch[1]);
   sn.SetRes(params[1][2]);
 
   //hat
-  flt.SetFreq(params[2][0] * mPitch[2] + oPitch[2]);
+  flt.SetCutoff(params[2][0] * mPitch[2] + oPitch[2]);
   flt.SetRes(params[2][2]);
 
   tempo = kvals[6];
