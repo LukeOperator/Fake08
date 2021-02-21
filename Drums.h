@@ -12,13 +12,26 @@ using namespace daisysp;
 #define NUM_CONTROLS 8
 #define NUM_MODES 5
 
-float params[NUM_MODES][5]; 
+//every drum has 4 parameters, global controls are mode and tempo
+Parameter p_Pitch, p_Dec, p_Fx, p_Amp, p_mode, p_tempo;
+
+//0 = pitch, 1 = decay, 2 = FX, 3 = amp
+float params[NUM_MODES][4]; 
 
 float kvals[NUM_CONTROLS];
 float kold[NUM_CONTROLS];
 
 
-float trig = 0.0f;
+//parameter multipliers and offsets for 0 - 1 range
+//for example, the kick pitch runs from 20 - 150, so mPitch is 130 (0-130), and oPitch is +20 (20-150)
+
+float mPitch[] = {130.0f, 2000.0f, 4000.0f, 4000.0f, 200.0f};
+float mDec[] = {0.2f, 0.5f, 0.5f, 1.0f, 0.5f};
+
+float oPitch[] = {20.0f, 1000.0f, 3000.0f, 500.0f, 100.0f};
+float oDec[] = {0.01f, 0.1f, 0.05f, 0.1f, 0.1f};
+
+float trig[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
 //We have one Daisy Field
 DaisyField hardware;
@@ -55,17 +68,21 @@ AdEnv     ampEnv[NUM_MODES];
 AdEnv     pitchEnv[NUM_MODES];
 
 //filter for the hat
-Svf flt;
+Svf flt, sn;
 
-Pluck ping;
-float init_buff[256];
+//kick filter
+Svf kck;
 
 //metronome
 Metro     tick;
 
+//the value of which step in the sequence we're on
+uint8_t Step  = 0;
+
 //use this to change pages
 uint8_t mode = 0;
 uint8_t oldMode = 0;
+
 //2D array of no. of drums x no. of steps
 bool    Seq[NUM_MODES][MAX_LENGTH];
 
@@ -83,26 +100,33 @@ void ProcessControls();
 //e.g. kick should be a snap of noise into res filter like early MUTE stuff. Dev in Max first
 void Kick()
 {
-  trig = 1.0f;
-  pitchEnv[0].Trigger();
+  trig[0] = 1.0f;
+  ampEnv[0].Trigger();
 }
 void Snare()
 {
   ampEnv[1].Trigger();
+  pitchEnv[1].Trigger();
+  trig[1] = 1.0f;
 }
 void Hat()
 {
   //high hat in here
   ampEnv[2].Trigger();
+  ampEnv[2].Trigger();
+  trig[2] = 1.0f;
 }
 void Laser()
 {
   //pew pew
   ampEnv[3].Trigger();
   pitchEnv[3].Trigger();
+  trig[3] = 1.0f;
 }
 void Tom()
 {
   //Tom goes here
   ampEnv[4].Trigger();
+  pitchEnv[4].Trigger();
+  trig[4] = 1.0f;
 }

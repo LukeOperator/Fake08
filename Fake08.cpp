@@ -5,12 +5,9 @@
 void AudioCallback(float* in, float* out, size_t size)
 {
   //floats here are effectively signals, sig being the output
-    float kick_out, noise_out, snr_env_out, hat_env_out, hat_out, sig;
+    float kick_out, noise_out, snare_out, snr_env_out, hat_env_out, hat_out, sig;
 
-     for(int i = 0; i < NUM_CONTROLS; i++)
-    {
-        kvals[i] = hardware.knob[i].Process();
-    }
+    
     //call ProcessTick (defined below)
     ProcessTick();
 
@@ -24,25 +21,33 @@ void AudioCallback(float* in, float* out, size_t size)
         snr_env_out = ampEnv[1].Process();
         hat_env_out = ampEnv[2].Process();
 
-        ping.SetFreq(pitchEnv[0].Process());
-        kick_out = ping.Process(trig);
-        //multiply noise by snare env for snare sound
-        noise_out = noise[0].Process();
-        noise_out *= snr_env_out;
 
+        noise_out = noise[0].Process();
         hat_out = noise[1].Process();
+
+        kck.Process(ampEnv[0].Process());
+        kick_out = kck.Low();
+
+        //multiply noise by snare env for snare sound
+        sn.Process(noise_out);
+        snare_out = sn.Band();
+        snare_out *= snr_env_out;
+
         flt.Process(hat_out);
-        hat_out = flt.Band();
+        hat_out = flt.High();
         hat_out *= hat_env_out;
 
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-        sig = .3 * noise_out + .3 * kick_out + .3 * hat_out;
+        sig = .3 * (snare_out + kick_out + hat_out);
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
         out[i + 1] = sig;
-        trig = 0;
+        for (uint8_t j = 0; j < 5; j++)
+        {
+          trig[j] = 0;
+        }
 
     }
 }
@@ -69,11 +74,11 @@ void SetupDrums(float samplerate)
 
 
   for (uint8_t i = 0; i < NUM_MODES; i++)
-    {   
+    { 
       //initialise the envelopes
       ampEnv[i].Init(samplerate);
       //use the function SetTime and aim it at the envelope's attack segment
-      ampEnv[i].SetTime(ADENV_SEG_ATTACK, .01);
+      ampEnv[i].SetTime(ADENV_SEG_ATTACK, 0);
       //use the function SetTime and aim it at the envelope's decay segment
       ampEnv[i].SetTime(ADENV_SEG_DECAY, .2);
       //set the envelope to travel between 0 and 1
@@ -81,7 +86,7 @@ void SetupDrums(float samplerate)
       ampEnv[i].SetMin(0);
 
       pitchEnv[i].Init(samplerate);
-      pitchEnv[i].SetTime(ADENV_SEG_ATTACK, .01);
+      pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0);
       pitchEnv[i].SetTime(ADENV_SEG_DECAY, .2);
       pitchEnv[i].SetMax(1);
       pitchEnv[i].SetMin(0);
@@ -91,12 +96,13 @@ void SetupDrums(float samplerate)
     flt.SetRes(1);
     flt.SetFreq(8000);
 
-    pitchEnv[0].SetMin(50);
-    ping.Init(samplerate, init_buff, 128, PLUCK_MODE_WEIGHTED_AVERAGE);
-    ping.SetAmp(1);
-    ping.SetFreq(50);
-    ping.SetDamp(0.8);
-    ping.SetDecay(0.2);
+    kck.Init(samplerate);
+    kck.SetFreq(80);
+    kck.SetRes(0.5);
+
+    sn.Init(samplerate);
+    sn.SetRes(0);
+    sn.SetFreq(1000);
 }
 
 
@@ -147,11 +153,21 @@ int main(void)
     //what's the callback rate?
     float callbackrate = hardware.AudioCallbackRate();
 
+    //init knobs for parameters
+    p_Pitch.Init(hardware.knob[0], 0, 1, Parameter::LOGARITHMIC);
+    p_Dec.Init(hardware.knob[1], 0, 1, Parameter::LINEAR);
+    p_Fx.Init(hardware.knob[2], 0, 1, Parameter::LINEAR);
+    p_Amp.Init(hardware.knob[3], 0, 1, Parameter::LINEAR);
+
+    p_tempo.Init(hardware.knob[6], 2, 10, Parameter::LINEAR);
+    p_mode.Init(hardware.knob[7], 0.5, 4.5, Parameter::LINEAR);
+
+
     //setup the drum sounds - call the above function
     SetupDrums(samplerate);
 
-    //Starts at 5 Hz
-    tick.Init(5, callbackrate);
+    //Starts at 3 Hz
+    tick.Init(3, callbackrate);
 
     for (uint8_t i = 0; i < NUM_MODES; i++)
       {
@@ -169,8 +185,6 @@ int main(void)
     for(;;) {}
 }
 
-//the value of which step in the sequence we're on
-uint8_t Step  = 0;
 
 void IncrementSteps()
 {
@@ -199,94 +213,103 @@ void ProcessTick()
     }
 }
 
-
-void  UpdateTempo()
-{
-  float k6 = kvals[6];
-//if 7th knob has moved more than 0.0005, assign new value to tempo
-    if (abs(k6 - kold[6])> 0.0005){
-      // TODO Logarithms mate
-        tempo = (8 * k6) + 3;
-    }
-    if (tick.GetFreq())
-    {
-      tick.SetFreq(tempo);
-    }
-    kold[6] = k6;
-}
-
 float stepLED = 0;
 
 void UpdateLeds()
 {
-  //if you press the button, switch the step on / off
   // TODO lots of if statements here, there should be a better way
+  // also need knob LEDS here
+
   for(size_t i = 0; i < 16; i++)
   {
+    //if we press a button, turn on or off
     if(hardware.KeyboardRisingEdge(i))
     {
       Seq[mode][i] = 1 - Seq[mode][i];
     }
+
+    //if we're on the current step, full birghtness
+    //if we're not, show whether step will be on or off with less brightness
+
     if (i == Step)
     {
       stepLED = 1;
     }
-    if (i != Step && Seq[mode][i] == 1)
-    {
-      stepLED = 0.7;
+    else{
+      if (Seq[mode][i])
+      {
+        stepLED = 0.7;
+      }
+      else
+      {
+        stepLED = 0;
+      }
     }
-    if(i != Step && Seq[mode][i] == 0)
-    {
-      stepLED = 0;
-    }
+
     // here I need to set the values of the seq to the LEDs
     hardware.led_driver.SetLed(keyboard_leds[i], stepLED);
+    
   }
+
   //we've set the new values, this command actually sends those values
   hardware.led_driver.SwapBuffersAndTransmit();
+  
 }
 
 
 void UpdateVars()
 { 
-  //currently values change when you change page
-  // requires comparison of parameter value, kval and kold??
-  // look into Daisy Type Parameter
-  switch (mode)
+  kvals[0] = p_Pitch.Process();
+  kvals[1] = p_Dec.Process();
+  kvals[2] = p_Fx.Process();
+  kvals[3] = p_Amp.Process();
+  kvals[6] = p_tempo.Process();
+  kvals[7] = p_mode.Process();
+
+  //if any of the knobs move, apply that value to the params
+  for(uint8_t i = 0; i < NUM_CONTROLS; i++)
   {
-    //kick drum vars
-  case 0:
-    pitchEnv[mode].SetTime(ADENV_SEG_DECAY, kvals[0] * 0.5 + 0.05);
-    pitchEnv[mode].SetMax(kvals[1]*100 + 50);
-    ping.SetDamp(kvals[2]);
-    ping.SetDecay(kvals[3]);
-    ping.SetAmp(kvals[4]);
-    break;
-
-    //snare vars
-  case 1:
-    ampEnv[mode].SetTime(ADENV_SEG_DECAY, kvals[0] * 0.5 + 0.05);
-    ampEnv[mode].SetMax(kvals[4]);
-    break;
-
-    //hi-hat vars
-  case 2:
-    ampEnv[mode].SetTime(ADENV_SEG_DECAY, kvals[0] * 0.5 + 0.05);
-    flt.SetFreq(4000 + (kvals[1]*6000));
-    ampEnv[mode].SetMax(kvals[4]);
-    break;
-
-  default:
-    break;
+    if (abs(kvals[i]-kold[i]) > 0.005)
+    {
+      if(i < 4)
+      {
+        params[mode][i] = kvals[i];
+      }
+      kold[i] = kvals[i];
+    }
   }
 
-    //TODO this creates only 4 modes, lots of dead space at the bottom
-    float k7 = std::floor(kvals[7] * (NUM_MODES - 1));
-    if (abs(k7 - kold[7])>=1)
-    {
-      mode = k7;
-      kold[7] = k7;
-    }
+  //apply params to envelopes with multipliers and offsets
+  for(uint8_t i = 0; i < NUM_MODES; i++)
+  {
+    pitchEnv[i].SetMax(params[i][0] * mPitch[i] + oPitch[i]);
+    ampEnv[i].SetTime(ADENV_SEG_DECAY, params[i][1] * mDec[i] + oDec[i]);
+    //gain
+    ampEnv[i].SetMax(params[i][3]);
+  }
+
+  //unique vals and fX levels
+
+  //kick
+  kck.SetFreq(params[0][0] * mPitch[0] + oPitch[0]);
+  kck.SetRes(params[0][2]);
+
+  //snare
+  sn.SetFreq(params[1][0] * mPitch[1] + oPitch[1]);
+  sn.SetRes(params[1][2]);
+
+  //hat
+  flt.SetFreq(params[2][0] * mPitch[2] + oPitch[2]);
+  flt.SetRes(params[2][2]);
+
+  tempo = kvals[6];
+  //only send the tempo value if we're playing
+  if (tick.GetFreq())
+      {
+        tick.SetFreq(tempo);
+      }
+
+  mode = std::floor(kvals[7]);
 }
 
 //every callback, update the controls
@@ -297,9 +320,7 @@ void ProcessControls()
 
     UpdateSwitch();
 
-    UpdateTempo();
+    UpdateVars();
 
     UpdateLeds();
-
-    UpdateVars();
 }
