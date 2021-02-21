@@ -5,7 +5,7 @@
 void AudioCallback(float* in, float* out, size_t size)
 {
   //floats here are effectively signals, sig being the output
-    float kick_out, noise_out, snare_out, snr_env_out, hat_env_out, hat_out, sig;
+    float kick_out, kick_noise, snare_noise, hat_noise, noise_out, snare_out, kick_env_out, snr_env_out, hat_env_out, hat_out, sig;
 
     
     //call ProcessTick (defined below)
@@ -20,26 +20,26 @@ void AudioCallback(float* in, float* out, size_t size)
         //envelope signals
         snr_env_out = ampEnv[1].Process();
         hat_env_out = ampEnv[2].Process();
+        kick_env_out = ampEnv[0].Process();
 
+        kick_noise = osc[0].Process();
+        snare_noise = noise[1].Process();
+        hat_noise = noise[2].Process();
 
-        noise_out = noise[0].Process();
-        hat_out = noise[1].Process();
-
-        kck.Process(ampEnv[0].Process());
-        kick_out = kck.Low();
+        
+        
+        kick_out = kck.Process(kick_noise * kick_env_out);
 
         //multiply noise by snare env for snare sound
-        sn.Process(noise_out);
-        snare_out = sn.Band();
-        snare_out *= snr_env_out;
+        
+        snare_out = sn.Process(snare_noise * snr_env_out);
 
-        flt.Process(hat_out);
-        hat_out = flt.High();
-        hat_out *= hat_env_out;
+        
+        hat_out = flt.Process(hat_noise * hat_env_out);
 
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-        sig = .3 * (snare_out + kick_out + hat_out);
+        sig = (snare_out + kick_out + hat_out);
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
@@ -54,31 +54,31 @@ void AudioCallback(float* in, float* out, size_t size)
 
 void SetupDrums(float samplerate)
 {
-    //initialise the oscillator object with sample rate and set waveform and amplitude
-    //TODO add more sounds
-    osc[0].Init(samplerate);
-    osc[0].SetWaveform(Oscillator::WAVE_TRI);
-    osc[0].SetAmp(1);
+  //process all knobs once so that knobs don't send values of 0 on init
+  kold[0] = p_Pitch.Process();
+  kold[1] = p_Dec.Process();
+  kold[2] = p_Fx.Process();
+  kold[3] = p_Amp.Process();
+  kold[6] = p_tempo.Process();
+  kold[7] = p_mode.Process();
 
-    osc[1].Init(samplerate);
-    osc[1].SetWaveform(Oscillator::WAVE_SIN);
-    osc[1].SetAmp(1);
-    
-    osc[2].Init(samplerate);
-    osc[2].SetWaveform(Oscillator::WAVE_SIN);
-    osc[2].SetAmp(1);
-    
-    //intialise noise object
-    noise[0].Init();
-    noise[1].Init();
+  //TODO add more sounds
+  //intialise noise object
+  noise[0].Init();
+  noise[1].Init();
+  noise[2].Init();
 
 
   for (uint8_t i = 0; i < NUM_MODES; i++)
     { 
+      osc[i].Init(samplerate);
+      osc[i].SetWaveform(Oscillator::WAVE_POLYBLEP_SAW);
+      osc[i].SetFreq(100);
+      osc[i].SetAmp(1);
       //initialise the envelopes
       ampEnv[i].Init(samplerate);
       //use the function SetTime and aim it at the envelope's attack segment
-      ampEnv[i].SetTime(ADENV_SEG_ATTACK, 0);
+      ampEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01);
       //use the function SetTime and aim it at the envelope's decay segment
       ampEnv[i].SetTime(ADENV_SEG_DECAY, .2);
       //set the envelope to travel between 0 and 1
@@ -86,14 +86,14 @@ void SetupDrums(float samplerate)
       ampEnv[i].SetMin(0);
 
       pitchEnv[i].Init(samplerate);
-      pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0);
+      pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01);
       pitchEnv[i].SetTime(ADENV_SEG_DECAY, .2);
       pitchEnv[i].SetMax(1);
       pitchEnv[i].SetMin(0);
     }
 
     flt.Init(samplerate);
-    flt.SetRes(1);
+    flt.SetRes(0.5);
     flt.SetFreq(8000);
 
     kck.Init(samplerate);
@@ -101,8 +101,9 @@ void SetupDrums(float samplerate)
     kck.SetRes(0.5);
 
     sn.Init(samplerate);
-    sn.SetRes(0);
+    sn.SetRes(0.5);
     sn.SetFreq(1000);
+
 }
 
 
