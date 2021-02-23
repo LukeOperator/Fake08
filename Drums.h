@@ -25,10 +25,10 @@ float kold[NUM_CONTROLS];
 //parameter multipliers and offsets for 0 - 1 range
 //for example, the kick pitch runs from 50 - 150, so mPitch is 100 (0-100), and oPitch is +50 (50-150)
 
-float mPitch[] = {100.0f, 2000.0f, 4000.0f, 4000.0f, 200.0f};
+float mPitch[] = {500.0f, 2000.0f, 4000.0f, 4000.0f, 200.0f};
 float mDec[] = {0.2f, 0.5f, 0.5f, 1.0f, 0.5f};
 
-float oPitch[] = {100.0f, 1000.0f, 3000.0f, 500.0f, 100.0f};
+float oPitch[] = {50.0f, 1000.0f, 3000.0f, 500.0f, 100.0f};
 float oDec[] = {0.01f, 0.1f, 0.05f, 0.1f, 0.1f};
 
 float trig[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
@@ -70,6 +70,10 @@ Oscillator osc[NUM_MODES];
 //filter for the hat
 Biquad flt, sn, kck;
 
+ATone highPass[5];
+
+float passPoint = 50.0f;
+
 
 //metronome
 Metro     tick;
@@ -99,6 +103,7 @@ void ProcessControls();
 void Kick()
 {
   trig[0] = 1.0f;
+  pitchEnv[0].Trigger();
   ampEnv[0].Trigger();
 }
 void Snare()
