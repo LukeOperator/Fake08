@@ -68,11 +68,11 @@ AdEnv     pitchEnv[NUM_MODES];
 Oscillator osc[NUM_MODES];
 
 //filter for the hat
-Biquad flt, sn, kck;
+Svf flt, sn, kck;
 
 ATone highPass[5];
 
-float passPoint = 50.0f;
+float passPoint = 30.0f;
 
 
 //metronome

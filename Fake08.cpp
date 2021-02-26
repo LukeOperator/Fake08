@@ -26,18 +26,31 @@ void AudioCallback(float* in, float* out, size_t size)
         snare_noise = noise[1].Process();
         hat_noise = noise[2].Process();
 
-        
+        kick_pitch = pitchEnv[0].Process();
+        kick_pitch *= mPitch[0];
+        kick_pitch += oPitch[0];
 
-        inKick = kck.Process(kick_noise);
-        kick_out = highPass[0].Process(inKick) * kick_env_out * kick_env_out * params[0][3] * params[0][3];
         
+        osc[0].SetFreq(kick_pitch);
+        osc[0].SetAmp(kick_env_out * kick_env_out * params[0][3]);
+        kick_out = osc[0].Process() + (kick_noise * 0.001 * kick_env_out * kick_env_out);        
         
-        //multiply noise by snare env for snare sound
-        
-        inSnare = sn.Process(snare_noise * snr_env_out * snr_env_out);
+       
+        /*
+        kck.SetFreq(kick_pitch);
+        kck.Process(kick_noise);
+        inKick = kck.Low();
+        kick_out = highPass[0].Process(inKick) * kick_env_out * params[0][3];
+        */
+
+        //kick made from filter with simulation of passive noise 
+                
+        sn.Process(snare_noise * snr_env_out * snr_env_out);
+        inSnare = sn.Low();
         snare_out = highPass[1].Process(inSnare) * params[1][3] * params[1][3];
         
-        inHat = flt.Process(hat_noise * hat_env_out);
+        flt.Process(hat_noise * hat_env_out);
+        inHat = flt.High();
         hat_out = highPass[2].Process(inHat) * params[2][3] * params[2][3];
 
         //add each signal together (divide by number of sources)
@@ -85,33 +98,32 @@ void SetupDrums(float samplerate)
       //use the function SetTime and aim it at the envelope's decay segment
       ampEnv[i].SetTime(ADENV_SEG_DECAY, .2f);
       //set the envelope to travel between 0 and 1
-      ampEnv[i].SetMax(0.1);
+      ampEnv[i].SetMax(1);
       ampEnv[i].SetMin(0);
 
       pitchEnv[i].Init(samplerate);
       pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01f);
       pitchEnv[i].SetTime(ADENV_SEG_DECAY, .2f);
-      pitchEnv[i].SetMax(oPitch[i] + mPitch[i]);
-      pitchEnv[i].SetMin(oPitch[i]);
+      pitchEnv[i].SetMax(1);
+      pitchEnv[i].SetMin(0);
 
       highPass[i].Init(samplerate);
       highPass[i].SetFreq(passPoint);
-    }
-
-
-   
+    }   
 
     flt.Init(samplerate);
     flt.SetRes(0.5);
-    flt.SetCutoff(8000);
+    flt.SetFreq(8000);
 
     kck.Init(samplerate);
-    kck.SetCutoff(80);
+    kck.SetFreq(80);
     kck.SetRes(1);
+    kck.SetDrive(1);
 
     sn.Init(samplerate);
     sn.SetRes(0.5);
-    sn.SetCutoff(1000);
+    sn.SetFreq(1000);
+    sn.SetDrive(1);
 
 }
 
@@ -169,7 +181,7 @@ int main(void)
     p_Fx.Init(hardware.knob[2], 0, 1, Parameter::LINEAR);
     p_Amp.Init(hardware.knob[3], 0, 1, Parameter::LINEAR);
 
-    p_tempo.Init(hardware.knob[6], 2, 10, Parameter::LINEAR);
+    p_tempo.Init(hardware.knob[6], 2, 20, Parameter::LOGARITHMIC);
     p_mode.Init(hardware.knob[7], 0.5, 4.5, Parameter::LINEAR);
 
 
@@ -300,15 +312,14 @@ void UpdateVars()
   //unique vals and fX levels
 
   //kick
-  kck.SetCutoff(params[0][0] * mPitch[0] + oPitch[0]);
-  kck.SetRes(params[0][2]);
+  pitchEnv[0].SetTime(ADENV_SEG_DECAY, ((params[0][2] * mDec[0] * 0.1) + (oDec[0] * 0.01)));
 
   //snare
-  sn.SetCutoff(params[1][0] * mPitch[1] + oPitch[1]);
+  sn.SetFreq(params[1][0] * mPitch[1] + oPitch[1]);
   sn.SetRes(params[1][2]);
 
   //hat
-  flt.SetCutoff(params[2][0] * mPitch[2] + oPitch[2]);
+  flt.SetFreq(params[2][0] * mPitch[2] + oPitch[2]);
   flt.SetRes(params[2][2]);
 
   tempo = kvals[6];
