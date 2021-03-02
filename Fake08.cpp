@@ -5,7 +5,7 @@
 void AudioCallback(float* in, float* out, size_t size)
 {
   //floats here are effectively signals, sig being the output
-    float inKick, inSnare, inHat, kick_out, kick_noise, kick_pitch, snare_noise, hat_noise, noise_out, snare_out, kick_env_out, snr_env_out, hat_env_out, hat_out, sig;
+    float inKick, inSnare, inHat, kick_out, kick_noise, kick_pitch, snare_noise, hat_noise, noise_out, snare_out, kick_env_out, snr_env_out, hat_env_out, hat_out, cv_env_out, sig;
 
     
     //call ProcessTick (defined below)
@@ -21,6 +21,7 @@ void AudioCallback(float* in, float* out, size_t size)
         snr_env_out = ampEnv[1].Process();
         hat_env_out = ampEnv[2].Process();
         kick_env_out = ampEnv[0].Process();
+        cv_env_out = ampEnv[3].Process();
 
         kick_noise = noise[0].Process();
         snare_noise = noise[1].Process();
@@ -60,6 +61,7 @@ void AudioCallback(float* in, float* out, size_t size)
          //output resultant signal to both stereo channels
         out[i]     = sig;
         out[i + 1] = sig;
+        
         for (uint8_t j = 0; j < 5; j++)
         {
           trig[j] = 0;
@@ -104,6 +106,7 @@ void SetupDrums(float samplerate)
       pitchEnv[i].Init(samplerate);
       pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01f);
       pitchEnv[i].SetTime(ADENV_SEG_DECAY, .2f);
+      pitchEnv[i].SetCurve(-50);
       pitchEnv[i].SetMax(1);
       pitchEnv[i].SetMin(0);
 
@@ -312,7 +315,7 @@ void UpdateVars()
   //unique vals and fX levels
 
   //kick
-  pitchEnv[0].SetTime(ADENV_SEG_DECAY, ((params[0][2] * mDec[0] * 0.1) + (oDec[0] * 0.01)));
+  pitchEnv[0].SetTime(ADENV_SEG_DECAY, ((params[0][2] * mDec[0]) + (oDec[0])));
 
   //snare
   sn.SetFreq(params[1][0] * mPitch[1] + oPitch[1]);
