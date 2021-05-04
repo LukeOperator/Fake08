@@ -9,6 +9,7 @@ void AudioCallback(float* in, float* out, size_t size)
     inSnare, snare_noise, snare_out, snr_env_out,
     inHat, hat_noise, hat_env_out, hat_out,
     inLaser, laser_out, laser_pitch, laser_env_out, 
+    inBuzz, buzz_out, buzz_pitch, buzz_env_out,
     cv_env_out, sig, noise_out;
 
     
@@ -26,9 +27,10 @@ void AudioCallback(float* in, float* out, size_t size)
         snr_env_out = ampEnv[1].Process();
         hat_env_out = ampEnv[2].Process();
         laser_env_out = ampEnv[3].Process();
+        buzz_env_out = ampEnv[4].Process();
 
-        snare_noise = noise[1].Process();
-        hat_noise = noise[2].Process();
+        snare_noise = noise[0].Process();
+        hat_noise = noise[1].Process();
 
         //kick
         kick_pitch = pitchEnv[0].Process();        
@@ -39,22 +41,25 @@ void AudioCallback(float* in, float* out, size_t size)
         //snare
         sn.Process(snare_noise * snr_env_out * snr_env_out);
         inSnare = sn.Low();
-        snare_out = highPass[1].Process(inSnare) * params[1][3] * params[1][3];
+        snare_out = highPass[0].Process(inSnare) * params[1][3] * params[1][3];
         
         //hat
         flt.Process(hat_noise * hat_env_out);
         inHat = flt.High();
-        hat_out = highPass[2].Process(inHat) * params[2][3] * params[2][3];
+        hat_out = highPass[1].Process(inHat) * params[2][3] * params[2][3];
 
         //laser
         laser_pitch = pitchEnv[3].Process();        
         osc[3].SetFreq(laser_pitch);
         osc[3].SetAmp(laser_env_out * laser_env_out * params[3][3]);
-        laser_out = osc[3].Process() + (laser_env_out * laser_env_out);   
+        laser_out = osc[3].Process();   
+
+        //buzz
+ 
 
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-        sig = (snare_out + kick_out + hat_out + laser_out);
+        sig = (snare_out + kick_out + hat_out + laser_out + buzz_out);
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
@@ -82,7 +87,11 @@ void SetupDrums(float samplerate)
   //intialise noise object
   noise[0].Init();
   noise[1].Init();
-  noise[2].Init();
+
+  highPass[0].Init(samplerate);
+  highPass[0].SetFreq(passPoint);
+  highPass[1].Init(samplerate);
+  highPass[1].SetFreq(passPoint);
 
 
   for (uint8_t i = 0; i < NUM_MODES; i++)
@@ -105,21 +114,16 @@ void SetupDrums(float samplerate)
       pitchEnv[i].SetTime(ADENV_SEG_ATTACK, 0.01f);
       pitchEnv[i].SetTime(ADENV_SEG_DECAY, .2f);
       pitchEnv[i].SetCurve(-50);
-      pitchEnv[i].SetMax(1);
-      pitchEnv[i].SetMin(0);
+      pitchEnv[i].SetMax(mPitch[i] + oPitch[i]);
+      pitchEnv[i].SetMin(oPitch[i]);
 
-      highPass[i].Init(samplerate);
-      highPass[i].SetFreq(passPoint);
+
     }   
 
     flt.Init(samplerate);
     flt.SetRes(0.5);
     flt.SetFreq(8000);
 
-    kck.Init(samplerate);
-    kck.SetFreq(80);
-    kck.SetRes(1);
-    kck.SetDrive(1);
 
     sn.Init(samplerate);
     sn.SetRes(0.5);
@@ -144,7 +148,7 @@ void SetSeq(bool* seq, bool in)
     }
 }
 
-void    UpdateSwitch()
+void UpdateSwitch()
 {
     //left switch triggers one shot of current drum
     if(hardware.sw[0].RisingEdge())
@@ -304,9 +308,9 @@ void UpdateVars()
   }
 
   //apply params to envelopes with multipliers and offsets
-  for(uint8_t i = 0; i < NUM_MODES; i++)
+  for(uint8_t i = 0; i < 3; i++)
   {
-    pitchEnv[i].SetMax(params[i][0] * mPitch[i] + oPitch[i]);
+    pitchEnv[i].SetMax((params[i][0] * mPitch[i]) + oPitch[i]);
     ampEnv[i].SetTime(ADENV_SEG_DECAY, params[i][1] * mDec[i] + oDec[i]);
     //gain
   }
@@ -325,7 +329,13 @@ void UpdateVars()
   flt.SetRes(params[2][2]);
 
   //laser
+  pitchEnv[3].SetMin((params[3][0] * mPitch[3]) + oPitch[3]);
+  pitchEnv[3].SetMax((params[3][1] * mPitch[3]) + oPitch[3]);
   pitchEnv[3].SetTime(ADENV_SEG_DECAY, ((params[3][2] * mDec[3]) + (oDec[3])));
+  ampEnv[3].SetTime(ADENV_SEG_DECAY, ((params[3][2] * mDec[3]) + (oDec[3])));
+
+  //muzz
+  
 
 
   tempo = kvals[6];

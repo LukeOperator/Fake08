@@ -28,7 +28,7 @@ float kold[NUM_CONTROLS];
 float mPitch[] = {2000.0f, 2000.0f, 4000.0f, 4000.0f, 200.0f};
 float mDec[] = {0.3f, 0.5f, 0.5f, 1.0f, 0.5f};
 
-float oPitch[] = {50.0f, 1000.0f, 3000.0f, 200.0f, 100.0f};
+float oPitch[] = {50.0f, 1000.0f, 3000.0f, 200.0f, 10.0f};
 float oDec[] = {0.01f, 0.1f, 0.05f, 0.1f, 0.1f};
 
 float trig[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
@@ -71,17 +71,21 @@ size_t keyboard_leds[] = {
   };
 
 //We have 3 white noise generator
-WhiteNoise noise[3];
+WhiteNoise noise[2];
 
-//5 attack / decay envelopes
+//5 attack / decay amp envelopes
 AdEnv     ampEnv[NUM_MODES];
+
+//5 attack / decay pitch envelopes
 AdEnv     pitchEnv[NUM_MODES];
+
+//5 oscillators
 Oscillator osc[NUM_MODES];
 
 //filter for the hat
-Svf flt, sn, kck;
+Svf flt, sn;
 
-ATone highPass[5];
+ATone highPass[2];
 
 float passPoint = 30.0f;
 
@@ -113,7 +117,6 @@ void ProcessControls();
 //e.g. kick should be a snap of noise into res filter like early MUTE stuff. Dev in Max first
 void Kick()
 {
-  trig[0] = 1.0f;
   pitchEnv[0].Trigger();
   ampEnv[0].Trigger();
 }
@@ -121,26 +124,21 @@ void Snare()
 {
   ampEnv[1].Trigger();
   pitchEnv[1].Trigger();
-  trig[1] = 1.0f;
 }
 void Hat()
 {
   //high hat in here
   ampEnv[2].Trigger();
   ampEnv[2].Trigger();
-  trig[2] = 1.0f;
 }
 void Laser()
 {
   //pew pew
   ampEnv[3].Trigger();
   pitchEnv[3].Trigger();
-  trig[3] = 1.0f;
 }
 void Buzz()
 {
   //Buzz goes here
-  ampEnv[4].Trigger();
-  pitchEnv[4].Trigger();
-  trig[4] = 1.0f;
+
 }
