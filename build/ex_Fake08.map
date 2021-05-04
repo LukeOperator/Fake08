@@ -201,6 +201,8 @@ Discarded input sections
                 0x0000000000000000       0x24 build/Fake08.o
  .bss.buttons   0x0000000000000000       0x10 build/Fake08.o
  .bss.oldMode   0x0000000000000000        0x1 build/Fake08.o
+ .data.knob_leds
+                0x0000000000000000       0x20 build/Fake08.o
  .group         0x0000000000000000        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
  .text          0x0000000000000000        0x0 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
  .data          0x0000000000000000        0x0 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
@@ -2038,7 +2040,7 @@ LOAD /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-
                 0x0000000008000000                g_pfnVectors
                 0x0000000008000298                . = ALIGN (0x4)
 
-.text           0x0000000008000298     0xdf68
+.text           0x0000000008000298     0xdf88
                 0x0000000008000298                . = ALIGN (0x4)
                 0x0000000008000298                _stext = .
  *(.text)
@@ -2230,8 +2232,9 @@ LOAD /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-
  .text._Z5Laserv
                 0x0000000008000718       0x2c build/Fake08.o
                 0x0000000008000718                Laser()
- .text._Z3Tomv  0x0000000008000744       0x2c build/Fake08.o
-                0x0000000008000744                Tom()
+ .text._Z4Buzzv
+                0x0000000008000744       0x2c build/Fake08.o
+                0x0000000008000744                Buzz()
  .text.__tcf_0  0x0000000008000770        0x4 build/Fake08.o
  .text.__tcf_3  0x0000000008000774        0x4 build/Fake08.o
  .text.__tcf_4  0x0000000008000778        0x4 build/Fake08.o
@@ -2256,1069 +2259,1069 @@ LOAD /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-
                 0x0000000008000c2c      0x13c build/Fake08.o
                 0x0000000008000c2c                UpdateLeds()
  .text._Z10UpdateVarsv
-                0x0000000008000d68      0x1b8 build/Fake08.o
+                0x0000000008000d68      0x1d8 build/Fake08.o
                 0x0000000008000d68                UpdateVars()
  .text._Z13AudioCallbackPfS_j
-                0x0000000008000f20      0x204 build/Fake08.o
-                0x0000000008000f20                AudioCallback(float*, float*, unsigned int)
+                0x0000000008000f40      0x204 build/Fake08.o
+                0x0000000008000f40                AudioCallback(float*, float*, unsigned int)
  .text.startup._GLOBAL__sub_I_p_Pitch
-                0x0000000008001124      0x118 build/Fake08.o
+                0x0000000008001144      0x118 build/Fake08.o
  .text._ZN5daisy10DaisyField4InitEb
-                0x000000000800123c      0x388 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x000000000800123c                daisy::DaisyField::Init(bool)
+                0x000000000800125c      0x388 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x000000000800125c                daisy::DaisyField::Init(bool)
  .text._ZN5daisy10DaisyField10StartAudioEPFvPfS1_jE
-                0x00000000080015c4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x00000000080015c4                daisy::DaisyField::StartAudio(void (*)(float*, float*, unsigned int))
+                0x00000000080015e4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080015e4                daisy::DaisyField::StartAudio(void (*)(float*, float*, unsigned int))
  .text._ZN5daisy10DaisyField15AudioSampleRateEv
-                0x00000000080015c8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x00000000080015c8                daisy::DaisyField::AudioSampleRate()
+                0x00000000080015e8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080015e8                daisy::DaisyField::AudioSampleRate()
  .text._ZN5daisy10DaisyField17AudioCallbackRateEv
-                0x00000000080015cc        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x00000000080015cc                daisy::DaisyField::AudioCallbackRate()
+                0x00000000080015ec        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080015ec                daisy::DaisyField::AudioCallbackRate()
  .text._ZN5daisy10DaisyField8StartAdcEv
-                0x00000000080015d0        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x00000000080015d0                daisy::DaisyField::StartAdc()
+                0x00000000080015f0        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080015f0                daisy::DaisyField::StartAdc()
  .text._ZN5daisy10DaisyField21ProcessAnalogControlsEv
-                0x00000000080015d8       0x3c ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x00000000080015d8                daisy::DaisyField::ProcessAnalogControls()
+                0x00000000080015f8       0x3c ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080015f8                daisy::DaisyField::ProcessAnalogControls()
  .text._ZN5daisy10DaisyField22ProcessDigitalControlsEv
-                0x0000000008001614      0x188 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x0000000008001614                daisy::DaisyField::ProcessDigitalControls()
+                0x0000000008001634      0x188 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x0000000008001634                daisy::DaisyField::ProcessDigitalControls()
  .text._ZNK5daisy10DaisyField18KeyboardRisingEdgeEj
-                0x000000000800179c       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
-                0x000000000800179c                daisy::DaisyField::KeyboardRisingEdge(unsigned int) const
+                0x00000000080017bc       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080017bc                daisy::DaisyField::KeyboardRisingEdge(unsigned int) const
  .text.startup._GLOBAL__sub_I__ZN5daisy10DaisyField4InitEb
-                0x00000000080017b0       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x00000000080017d0       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
  .text._ZN5daisy9DaisySeed9ConfigureEv
-                0x00000000080017c8       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x00000000080017c8                daisy::DaisySeed::Configure()
+                0x00000000080017e8       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x00000000080017e8                daisy::DaisySeed::Configure()
  .text._ZN5daisy9DaisySeed6GetPinEh
-                0x0000000008001820       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x0000000008001820                daisy::DaisySeed::GetPin(unsigned char)
+                0x0000000008001840       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x0000000008001840                daisy::DaisySeed::GetPin(unsigned char)
  .text._ZN5daisy9DaisySeed10StartAudioEPFvPfS1_jE
-                0x000000000800184c        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x000000000800184c                daisy::DaisySeed::StartAudio(void (*)(float*, float*, unsigned int))
+                0x000000000800186c        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x000000000800186c                daisy::DaisySeed::StartAudio(void (*)(float*, float*, unsigned int))
  .text._ZN5daisy9DaisySeed15AudioSampleRateEv
-                0x0000000008001854        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x0000000008001854                daisy::DaisySeed::AudioSampleRate()
+                0x0000000008001874        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x0000000008001874                daisy::DaisySeed::AudioSampleRate()
  .text._ZN5daisy9DaisySeed17SetAudioBlockSizeEj
-                0x000000000800185c       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x000000000800185c                daisy::DaisySeed::SetAudioBlockSize(unsigned int)
+                0x000000000800187c       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x000000000800187c                daisy::DaisySeed::SetAudioBlockSize(unsigned int)
  .text._ZNK5daisy9DaisySeed17AudioCallbackRateEv
-                0x0000000008001894        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x0000000008001894                daisy::DaisySeed::AudioCallbackRate() const
- *fill*         0x000000000800189c        0x4 
+                0x00000000080018b4        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x00000000080018b4                daisy::DaisySeed::AudioCallbackRate() const
+ *fill*         0x00000000080018bc        0x4 
  .text._ZN5daisy9DaisySeed14ConfigureAudioEv
-                0x00000000080018a0       0x78 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x00000000080018a0                daisy::DaisySeed::ConfigureAudio()
+                0x00000000080018c0       0x78 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x00000000080018c0                daisy::DaisySeed::ConfigureAudio()
  .text._ZN5daisy9DaisySeed4InitEb
-                0x0000000008001918       0x7c ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
-                0x0000000008001918                daisy::DaisySeed::Init(bool)
+                0x0000000008001938       0x7c ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x0000000008001938                daisy::DaisySeed::Init(bool)
  .text._ZN5daisy6Ak45564InitE12dsy_gpio_pin
-                0x0000000008001994       0x44 ../../DaisyExamples/libdaisy/build/libdaisy.a(codec_ak4556.o)
-                0x0000000008001994                daisy::Ak4556::Init(dsy_gpio_pin)
+                0x00000000080019b4       0x44 ../../DaisyExamples/libdaisy/build/libdaisy.a(codec_ak4556.o)
+                0x00000000080019b4                daisy::Ak4556::Init(dsy_gpio_pin)
  .text.dsy_sdram_init
-                0x00000000080019d8      0x108 ../../DaisyExamples/libdaisy/build/libdaisy.a(sdram.o)
-                0x00000000080019d8                dsy_sdram_init
+                0x00000000080019f8      0x108 ../../DaisyExamples/libdaisy/build/libdaisy.a(sdram.o)
+                0x00000000080019f8                dsy_sdram_init
  .text.HAL_SDRAM_MspInit
-                0x0000000008001ae0      0x1d0 ../../DaisyExamples/libdaisy/build/libdaisy.a(sdram.o)
-                0x0000000008001ae0                HAL_SDRAM_MspInit
+                0x0000000008001b00      0x1d0 ../../DaisyExamples/libdaisy/build/libdaisy.a(sdram.o)
+                0x0000000008001b00                HAL_SDRAM_MspInit
  .text._ZN5daisy11AudioHandle4Impl16InternalCallbackEPlS2_j
-                0x0000000008001cb0      0xbbc ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
-                0x0000000008001cb0                daisy::AudioHandle::Impl::InternalCallback(long*, long*, unsigned int)
+                0x0000000008001cd0      0xbbc ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x0000000008001cd0                daisy::AudioHandle::Impl::InternalCallback(long*, long*, unsigned int)
  .text._ZN5daisy11AudioHandle4InitERKNS0_6ConfigENS_9SaiHandleE
-                0x000000000800286c       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
-                0x000000000800286c                daisy::AudioHandle::Init(daisy::AudioHandle::Config const&, daisy::SaiHandle)
+                0x000000000800288c       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x000000000800288c                daisy::AudioHandle::Init(daisy::AudioHandle::Config const&, daisy::SaiHandle)
  .text._ZNK5daisy11AudioHandle9GetConfigEv
-                0x00000000080028d0        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
-                0x00000000080028d0                daisy::AudioHandle::GetConfig() const
+                0x00000000080028f0        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x00000000080028f0                daisy::AudioHandle::GetConfig() const
  .text._ZN5daisy11AudioHandle12SetBlockSizeEj
-                0x00000000080028d8       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
-                0x00000000080028d8                daisy::AudioHandle::SetBlockSize(unsigned int)
+                0x00000000080028f8       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x00000000080028f8                daisy::AudioHandle::SetBlockSize(unsigned int)
  .text._ZN5daisy11AudioHandle13GetSampleRateEv
-                0x00000000080028f4        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
-                0x00000000080028f4                daisy::AudioHandle::GetSampleRate()
+                0x0000000008002914        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x0000000008002914                daisy::AudioHandle::GetSampleRate()
  .text._ZN5daisy11AudioHandle5StartEPFvPfS1_jE
-                0x00000000080028fc       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
-                0x00000000080028fc                daisy::AudioHandle::Start(void (*)(float*, float*, unsigned int))
+                0x000000000800291c       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x000000000800291c                daisy::AudioHandle::Start(void (*)(float*, float*, unsigned int))
  .text.startup._GLOBAL__sub_I__ZN5daisy11AudioHandle4Impl4InitENS0_6ConfigENS_9SaiHandleE
-                0x0000000008002928       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x0000000008002948       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
  .text._ZN5daisy13AnalogControl4InitEPtfbbf
-                0x0000000008002938       0x30 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
-                0x0000000008002938                daisy::AnalogControl::Init(unsigned short*, float, bool, bool, float)
+                0x0000000008002958       0x30 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
+                0x0000000008002958                daisy::AnalogControl::Init(unsigned short*, float, bool, bool, float)
  .text._ZN5daisy13AnalogControl13InitBipolarCvEPtf
-                0x0000000008002968       0x40 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
-                0x0000000008002968                daisy::AnalogControl::InitBipolarCv(unsigned short*, float)
+                0x0000000008002988       0x40 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
+                0x0000000008002988                daisy::AnalogControl::InitBipolarCv(unsigned short*, float)
  .text._ZN5daisy13AnalogControl7ProcessEv
-                0x00000000080029a8       0x48 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
-                0x00000000080029a8                daisy::AnalogControl::Process()
+                0x00000000080029c8       0x48 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
+                0x00000000080029c8                daisy::AnalogControl::Process()
  .text._ZN5daisy6GateIn4InitEP12dsy_gpio_pin
-                0x00000000080029f0       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(gatein.o)
-                0x00000000080029f0                daisy::GateIn::Init(dsy_gpio_pin*)
+                0x0000000008002a10       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(gatein.o)
+                0x0000000008002a10                daisy::GateIn::Init(dsy_gpio_pin*)
  .text._ZN5daisy6GateIn4TrigEv
-                0x0000000008002a00       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(gatein.o)
-                0x0000000008002a00                daisy::GateIn::Trig()
+                0x0000000008002a20       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(gatein.o)
+                0x0000000008002a20                daisy::GateIn::Trig()
  .text._ZN5daisy9SpiHandleD2Ev
-                0x0000000008002a28        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
-                0x0000000008002a28                daisy::SpiHandle::~SpiHandle()
-                0x0000000008002a28                daisy::SpiHandle::~SpiHandle()
+                0x0000000008002a48        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
+                0x0000000008002a48                daisy::SpiHandle::~SpiHandle()
+                0x0000000008002a48                daisy::SpiHandle::~SpiHandle()
  .text._ZN5daisy11OledDisplay6UpdateEv
-                0x0000000008002a2c       0x8c ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
-                0x0000000008002a2c                daisy::OledDisplay::Update()
+                0x0000000008002a4c       0x8c ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
+                0x0000000008002a4c                daisy::OledDisplay::Update()
  .text._ZN5daisy11OledDisplay4InitEP12dsy_gpio_pin
-                0x0000000008002ab8      0x324 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
-                0x0000000008002ab8                daisy::OledDisplay::Init(dsy_gpio_pin*)
+                0x0000000008002ad8      0x324 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
+                0x0000000008002ad8                daisy::OledDisplay::Init(dsy_gpio_pin*)
  .text.startup._GLOBAL__sub_I__ZN5daisy11OledDisplay4InitEP12dsy_gpio_pin
-                0x0000000008002ddc       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
+                0x0000000008002dfc       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
  .text._ZN5daisy9Parameter4InitENS_13AnalogControlEffNS0_5CurveE
-                0x0000000008002df4       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(parameter.o)
-                0x0000000008002df4                daisy::Parameter::Init(daisy::AnalogControl, float, float, daisy::Parameter::Curve)
+                0x0000000008002e14       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(parameter.o)
+                0x0000000008002e14                daisy::Parameter::Init(daisy::AnalogControl, float, float, daisy::Parameter::Curve)
  .text._ZN5daisy9Parameter7ProcessEv
-                0x0000000008002e60       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(parameter.o)
-                0x0000000008002e60                daisy::Parameter::Process()
+                0x0000000008002e80       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(parameter.o)
+                0x0000000008002e80                daisy::Parameter::Process()
  .text._ZN5daisy6Switch4InitE12dsy_gpio_pinf
-                0x0000000008002f0c       0x3c ../../DaisyExamples/libdaisy/build/libdaisy.a(switch.o)
-                0x0000000008002f0c                daisy::Switch::Init(dsy_gpio_pin, float)
+                0x0000000008002f2c       0x3c ../../DaisyExamples/libdaisy/build/libdaisy.a(switch.o)
+                0x0000000008002f2c                daisy::Switch::Init(dsy_gpio_pin, float)
  .text._ZN5daisy6Switch8DebounceEv
-                0x0000000008002f48       0x4c ../../DaisyExamples/libdaisy/build/libdaisy.a(switch.o)
-                0x0000000008002f48                daisy::Switch::Debounce()
+                0x0000000008002f68       0x4c ../../DaisyExamples/libdaisy/build/libdaisy.a(switch.o)
+                0x0000000008002f68                daisy::Switch::Debounce()
  .text._ZN5daisy16AdcChannelConfig10InitSingleE12dsy_gpio_pin
-                0x0000000008002f94       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x0000000008002f94                daisy::AdcChannelConfig::InitSingle(dsy_gpio_pin)
+                0x0000000008002fb4       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008002fb4                daisy::AdcChannelConfig::InitSingle(dsy_gpio_pin)
  .text._ZN5daisy16AdcChannelConfig7InitMuxE12dsy_gpio_pinjS1_S1_S1_
-                0x0000000008002fb0       0x5c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x0000000008002fb0                daisy::AdcChannelConfig::InitMux(dsy_gpio_pin, unsigned int, dsy_gpio_pin, dsy_gpio_pin, dsy_gpio_pin)
+                0x0000000008002fd0       0x5c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008002fd0                daisy::AdcChannelConfig::InitMux(dsy_gpio_pin, unsigned int, dsy_gpio_pin, dsy_gpio_pin, dsy_gpio_pin)
  .text._ZN5daisy9AdcHandle4InitEPNS_16AdcChannelConfigEjNS0_12OverSamplingE
-                0x000000000800300c      0x6e8 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x000000000800300c                daisy::AdcHandle::Init(daisy::AdcChannelConfig*, unsigned int, daisy::AdcHandle::OverSampling)
+                0x000000000800302c      0x6e8 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x000000000800302c                daisy::AdcHandle::Init(daisy::AdcChannelConfig*, unsigned int, daisy::AdcHandle::OverSampling)
  .text._ZN5daisy9AdcHandle5StartEv
-                0x00000000080036f4       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x00000000080036f4                daisy::AdcHandle::Start()
+                0x0000000008003714       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008003714                daisy::AdcHandle::Start()
  .text._ZNK5daisy9AdcHandle6GetPtrEh
-                0x0000000008003720       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x0000000008003720                daisy::AdcHandle::GetPtr(unsigned char) const
+                0x0000000008003740       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008003740                daisy::AdcHandle::GetPtr(unsigned char) const
  .text._ZNK5daisy9AdcHandle9GetMuxPtrEhh
-                0x0000000008003734       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x0000000008003734                daisy::AdcHandle::GetMuxPtr(unsigned char, unsigned char) const
+                0x0000000008003754       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008003754                daisy::AdcHandle::GetMuxPtr(unsigned char, unsigned char) const
  .text.HAL_ADC_MspInit
-                0x000000000800374c       0x98 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x000000000800374c                HAL_ADC_MspInit
+                0x000000000800376c       0x98 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x000000000800376c                HAL_ADC_MspInit
  .text.DMA1_Stream2_IRQHandler
-                0x00000000080037e4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x00000000080037e4                DMA1_Stream2_IRQHandler
+                0x0000000008003804        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008003804                DMA1_Stream2_IRQHandler
  .text.HAL_ADC_ConvCpltCallback
-                0x00000000080037f0      0x14c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x00000000080037f0                HAL_ADC_ConvCpltCallback
+                0x0000000008003810      0x14c ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x0000000008003810                HAL_ADC_ConvCpltCallback
  .text.HAL_ADC_ErrorCallback
-                0x000000000800393c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
-                0x000000000800393c                HAL_ADC_ErrorCallback
+                0x000000000800395c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x000000000800395c                HAL_ADC_ErrorCallback
  .text.dsy_dac_init
-                0x0000000008003940       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(dac.o)
-                0x0000000008003940                dsy_dac_init
+                0x0000000008003960       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(dac.o)
+                0x0000000008003960                dsy_dac_init
  .text.HAL_DAC_MspInit
-                0x00000000080039ac       0xb0 ../../DaisyExamples/libdaisy/build/libdaisy.a(dac.o)
-                0x00000000080039ac                HAL_DAC_MspInit
+                0x00000000080039cc       0xb0 ../../DaisyExamples/libdaisy/build/libdaisy.a(dac.o)
+                0x00000000080039cc                HAL_DAC_MspInit
  .text.dsy_gpio_init
-                0x0000000008003a5c      0x1b8 ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
-                0x0000000008003a5c                dsy_gpio_init
+                0x0000000008003a7c      0x1b8 ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
+                0x0000000008003a7c                dsy_gpio_init
  .text.dsy_gpio_read
-                0x0000000008003c14       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
-                0x0000000008003c14                dsy_gpio_read
+                0x0000000008003c34       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
+                0x0000000008003c34                dsy_gpio_read
  .text.dsy_gpio_write
-                0x0000000008003c30       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
-                0x0000000008003c30                dsy_gpio_write
+                0x0000000008003c50       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
+                0x0000000008003c50                dsy_gpio_write
  .text._ZN5daisy9I2CHandle4Impl16StartDmaTransferEtPhtPFvPvNS0_6ResultEES3_
-                0x0000000008003c54       0xbc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003c54                daisy::I2CHandle::Impl::StartDmaTransfer(unsigned short, unsigned char*, unsigned short, void (*)(void*, daisy::I2CHandle::Result), void*)
+                0x0000000008003c74       0xbc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003c74                daisy::I2CHandle::Impl::StartDmaTransfer(unsigned short, unsigned char*, unsigned short, void (*)(void*, daisy::I2CHandle::Result), void*)
  .text._ZN5daisy9I2CHandle4Impl8InitPinsEv
-                0x0000000008003d10       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003d10                daisy::I2CHandle::Impl::InitPins()
+                0x0000000008003d30       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003d30                daisy::I2CHandle::Impl::InitPins()
  .text.HAL_I2C_MspInit
-                0x0000000008003d68      0x1b4 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003d68                HAL_I2C_MspInit
+                0x0000000008003d88      0x1b4 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003d88                HAL_I2C_MspInit
  .text.dsy_i2c_global_init
-                0x0000000008003f1c       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003f1c                dsy_i2c_global_init
+                0x0000000008003f3c       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003f3c                dsy_i2c_global_init
  .text.DMA1_Stream6_IRQHandler
-                0x0000000008003f54       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003f54                DMA1_Stream6_IRQHandler
+                0x0000000008003f74       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003f74                DMA1_Stream6_IRQHandler
  .text.I2C1_EV_IRQHandler
-                0x0000000008003f78        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003f78                I2C1_EV_IRQHandler
+                0x0000000008003f98        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003f98                I2C1_EV_IRQHandler
  .text.I2C2_EV_IRQHandler
-                0x0000000008003f84        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003f84                I2C2_EV_IRQHandler
+                0x0000000008003fa4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003fa4                I2C2_EV_IRQHandler
  .text.I2C3_EV_IRQHandler
-                0x0000000008003f90        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003f90                I2C3_EV_IRQHandler
+                0x0000000008003fb0        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003fb0                I2C3_EV_IRQHandler
  .text.HAL_I2C_MasterTxCpltCallback
-                0x0000000008003f9c       0x70 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008003f9c                HAL_I2C_MasterTxCpltCallback
+                0x0000000008003fbc       0x70 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008003fbc                HAL_I2C_MasterTxCpltCallback
  .text.HAL_I2C_ErrorCallback
-                0x000000000800400c       0x74 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x000000000800400c                HAL_I2C_ErrorCallback
+                0x000000000800402c       0x74 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x000000000800402c                HAL_I2C_ErrorCallback
  .text._ZN5daisy9I2CHandle4InitERKNS0_6ConfigE
-                0x0000000008004080       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008004080                daisy::I2CHandle::Init(daisy::I2CHandle::Config const&)
+                0x00000000080040a0       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x00000000080040a0                daisy::I2CHandle::Init(daisy::I2CHandle::Config const&)
  .text._ZNK5daisy9I2CHandle9GetConfigEv
-                0x0000000008004174        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008004174                daisy::I2CHandle::GetConfig() const
+                0x0000000008004194        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008004194                daisy::I2CHandle::GetConfig() const
  .text._ZN5daisy9I2CHandle16TransmitBlockingEtPhtm
-                0x0000000008004178       0x34 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x0000000008004178                daisy::I2CHandle::TransmitBlocking(unsigned short, unsigned char*, unsigned short, unsigned long)
+                0x0000000008004198       0x34 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x0000000008004198                daisy::I2CHandle::TransmitBlocking(unsigned short, unsigned char*, unsigned short, unsigned long)
  .text._ZN5daisy9I2CHandle11TransmitDmaEtPhtPFvPvNS0_6ResultEES2_
-                0x00000000080041ac       0x78 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
-                0x00000000080041ac                daisy::I2CHandle::TransmitDma(unsigned short, unsigned char*, unsigned short, void (*)(void*, daisy::I2CHandle::Result), void*)
- *fill*         0x0000000008004224        0x4 
+                0x00000000080041cc       0x78 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x00000000080041cc                daisy::I2CHandle::TransmitDma(unsigned short, unsigned char*, unsigned short, void (*)(void*, daisy::I2CHandle::Result), void*)
+ *fill*         0x0000000008004244        0x4 
  .text.dsy_qspi_init
-                0x0000000008004228      0x388 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
-                0x0000000008004228                dsy_qspi_init
+                0x0000000008004248      0x388 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
+                0x0000000008004248                dsy_qspi_init
  .text.HAL_QSPI_MspInit
-                0x00000000080045b0      0x10c ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
-                0x00000000080045b0                HAL_QSPI_MspInit
+                0x00000000080045d0      0x10c ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
+                0x00000000080045d0                HAL_QSPI_MspInit
  .text.HAL_QSPI_MspDeInit
-                0x00000000080046bc       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
-                0x00000000080046bc                HAL_QSPI_MspDeInit
+                0x00000000080046dc       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
+                0x00000000080046dc                HAL_QSPI_MspDeInit
  .text.QUADSPI_IRQHandler
-                0x0000000008004714        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
-                0x0000000008004714                QUADSPI_IRQHandler
+                0x0000000008004734        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
+                0x0000000008004734                QUADSPI_IRQHandler
  .text._ZN5daisy9SaiHandle4Impl7InitDmaENS1_15PeripheralBlockE
-                0x0000000008004720       0xa0 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004720                daisy::SaiHandle::Impl::InitDma(daisy::SaiHandle::Impl::PeripheralBlock)
+                0x0000000008004740       0xa0 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004740                daisy::SaiHandle::Impl::InitDma(daisy::SaiHandle::Impl::PeripheralBlock)
  .text._ZN5daisy9SaiHandle4Impl8InitPinsEv
-                0x00000000080047c0       0xa8 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x00000000080047c0                daisy::SaiHandle::Impl::InitPins()
+                0x00000000080047e0       0xa8 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x00000000080047e0                daisy::SaiHandle::Impl::InitPins()
  .text.HAL_SAI_MspInit
-                0x0000000008004868      0x134 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004868                HAL_SAI_MspInit
+                0x0000000008004888      0x134 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004888                HAL_SAI_MspInit
  .text.DMA1_Stream0_IRQHandler
-                0x000000000800499c        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x000000000800499c                DMA1_Stream0_IRQHandler
+                0x00000000080049bc        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x00000000080049bc                DMA1_Stream0_IRQHandler
  .text.DMA1_Stream1_IRQHandler
-                0x00000000080049a8        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x00000000080049a8                DMA1_Stream1_IRQHandler
+                0x00000000080049c8        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x00000000080049c8                DMA1_Stream1_IRQHandler
  .text.DMA1_Stream3_IRQHandler
-                0x00000000080049b4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x00000000080049b4                DMA1_Stream3_IRQHandler
+                0x00000000080049d4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x00000000080049d4                DMA1_Stream3_IRQHandler
  .text.DMA1_Stream4_IRQHandler
-                0x00000000080049c0        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x00000000080049c0                DMA1_Stream4_IRQHandler
+                0x00000000080049e0        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x00000000080049e0                DMA1_Stream4_IRQHandler
  .text.HAL_SAI_RxHalfCpltCallback
-                0x00000000080049cc       0x78 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x00000000080049cc                HAL_SAI_RxHalfCpltCallback
+                0x00000000080049ec       0x78 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x00000000080049ec                HAL_SAI_RxHalfCpltCallback
  .text.HAL_SAI_RxCpltCallback
-                0x0000000008004a44       0x70 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004a44                HAL_SAI_RxCpltCallback
- *fill*         0x0000000008004ab4        0x4 
+                0x0000000008004a64       0x70 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004a64                HAL_SAI_RxCpltCallback
+ *fill*         0x0000000008004ad4        0x4 
  .text._ZN5daisy9SaiHandle4InitERKNS0_6ConfigE
-                0x0000000008004ab8      0x1f0 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004ab8                daisy::SaiHandle::Init(daisy::SaiHandle::Config const&)
+                0x0000000008004ad8      0x1f0 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004ad8                daisy::SaiHandle::Init(daisy::SaiHandle::Config const&)
  .text._ZNK5daisy9SaiHandle9GetConfigEv
-                0x0000000008004ca8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004ca8                daisy::SaiHandle::GetConfig() const
+                0x0000000008004cc8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004cc8                daisy::SaiHandle::GetConfig() const
  .text._ZN5daisy9SaiHandle8StartDmaEPlS1_jPFvS1_S1_jE
-                0x0000000008004cac       0x68 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004cac                daisy::SaiHandle::StartDma(long*, long*, unsigned int, void (*)(long*, long*, unsigned int))
+                0x0000000008004ccc       0x68 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004ccc                daisy::SaiHandle::StartDma(long*, long*, unsigned int, void (*)(long*, long*, unsigned int))
  .text._ZN5daisy9SaiHandle13GetSampleRateEv
-                0x0000000008004d14       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004d14                daisy::SaiHandle::GetSampleRate()
+                0x0000000008004d34       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004d34                daisy::SaiHandle::GetSampleRate()
  .text._ZNK5daisy9SaiHandle9GetOffsetEv
-                0x0000000008004d38        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
-                0x0000000008004d38                daisy::SaiHandle::GetOffset() const
+                0x0000000008004d58        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x0000000008004d58                daisy::SaiHandle::GetOffset() const
  .text._ZN5daisy9SpiHandle4InitEv
-                0x0000000008004d40       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
-                0x0000000008004d40                daisy::SpiHandle::Init()
+                0x0000000008004d60       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
+                0x0000000008004d60                daisy::SpiHandle::Init()
  .text._ZN5daisy9SpiHandle16BlockingTransmitEPhj
-                0x0000000008004d98       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
-                0x0000000008004d98                daisy::SpiHandle::BlockingTransmit(unsigned char*, unsigned int)
+                0x0000000008004db8       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
+                0x0000000008004db8                daisy::SpiHandle::BlockingTransmit(unsigned char*, unsigned int)
  .text.HAL_SPI_MspInit
-                0x0000000008004da8       0xd4 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
-                0x0000000008004da8                HAL_SPI_MspInit
+                0x0000000008004dc8       0xd4 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
+                0x0000000008004dc8                HAL_SPI_MspInit
  .text._ZN5daisy11TimerHandleD2Ev
-                0x0000000008004e7c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008004e7c                daisy::TimerHandle::~TimerHandle()
-                0x0000000008004e7c                daisy::TimerHandle::~TimerHandle()
+                0x0000000008004e9c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008004e9c                daisy::TimerHandle::~TimerHandle()
+                0x0000000008004e9c                daisy::TimerHandle::~TimerHandle()
  .text.SysTick_Handler
-                0x0000000008004e80       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008004e80                SysTick_Handler
+                0x0000000008004ea0       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008004ea0                SysTick_Handler
  .text.HardFault_Handler
-                0x0000000008004e90        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008004e90                HardFault_Handler
+                0x0000000008004eb0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008004eb0                HardFault_Handler
  .text._ZN5daisy6System5DelayEm
-                0x0000000008004e94        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008004e94                daisy::System::Delay(unsigned long)
+                0x0000000008004eb4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008004eb4                daisy::System::Delay(unsigned long)
  .text._ZN5daisy6System10DelayTicksEm
-                0x0000000008004e98        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008004e98                daisy::System::DelayTicks(unsigned long)
+                0x0000000008004eb8        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008004eb8                daisy::System::DelayTicks(unsigned long)
  .text._ZN5daisy6System15ConfigureClocksEv
-                0x0000000008004ea4      0x18c ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008004ea4                daisy::System::ConfigureClocks()
+                0x0000000008004ec4      0x18c ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008004ec4                daisy::System::ConfigureClocks()
  .text._ZN5daisy6System4InitERKNS0_6ConfigE
-                0x0000000008005030      0x11c ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x0000000008005030                daisy::System::Init(daisy::System::Config const&)
+                0x0000000008005050      0x11c ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008005050                daisy::System::Init(daisy::System::Config const&)
  .text._ZN5daisy6System12GetPClk1FreqEv
-                0x000000000800514c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x000000000800514c                daisy::System::GetPClk1Freq()
+                0x000000000800516c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x000000000800516c                daisy::System::GetPClk1Freq()
  .text.startup._GLOBAL__sub_I_SysTick_Handler
-                0x0000000008005150       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x0000000008005170       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
  .text.SystemInit
-                0x000000000800516c       0x84 ../../DaisyExamples/libdaisy/build/libdaisy.a(system_stm32h7xx.o)
-                0x000000000800516c                SystemInit
+                0x000000000800518c       0x84 ../../DaisyExamples/libdaisy/build/libdaisy.a(system_stm32h7xx.o)
+                0x000000000800518c                SystemInit
  .text.dsy_hal_map_get_port
-                0x00000000080051f0       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
-                0x00000000080051f0                dsy_hal_map_get_port
+                0x0000000008005210       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
+                0x0000000008005210                dsy_hal_map_get_port
  .text.dsy_hal_map_get_pin
-                0x0000000008005200       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
-                0x0000000008005200                dsy_hal_map_get_pin
+                0x0000000008005220       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
+                0x0000000008005220                dsy_hal_map_get_pin
  .text.HAL_MspInit
-                0x0000000008005210        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x0000000008005210                HAL_MspInit
+                0x0000000008005230        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x0000000008005230                HAL_MspInit
  .text.HAL_InitTick
-                0x0000000008005214       0x4c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x0000000008005214                HAL_InitTick
+                0x0000000008005234       0x4c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x0000000008005234                HAL_InitTick
  .text.HAL_Init
-                0x0000000008005260       0x60 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x0000000008005260                HAL_Init
+                0x0000000008005280       0x60 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x0000000008005280                HAL_Init
  .text.HAL_IncTick
-                0x00000000080052c0       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x00000000080052c0                HAL_IncTick
+                0x00000000080052e0       0x18 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x00000000080052e0                HAL_IncTick
  .text.HAL_GetTick
-                0x00000000080052d8        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x00000000080052d8                HAL_GetTick
+                0x00000000080052f8        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x00000000080052f8                HAL_GetTick
  .text.HAL_Delay
-                0x00000000080052e4       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x00000000080052e4                HAL_Delay
+                0x0000000008005304       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x0000000008005304                HAL_Delay
  .text.HAL_GetREVID
-                0x0000000008005308        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
-                0x0000000008005308                HAL_GetREVID
+                0x0000000008005328        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x0000000008005328                HAL_GetREVID
  .text.HAL_ADC_ConvHalfCpltCallback
-                0x0000000008005314        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005314                HAL_ADC_ConvHalfCpltCallback
+                0x0000000008005334        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x0000000008005334                HAL_ADC_ConvHalfCpltCallback
  .text.ADC_DMAHalfConvCplt
-                0x0000000008005318        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005318                ADC_DMAHalfConvCplt
+                0x0000000008005338        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x0000000008005338                ADC_DMAHalfConvCplt
  .text.ADC_DMAConvCplt
-                0x0000000008005324       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005324                ADC_DMAConvCplt
+                0x0000000008005344       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x0000000008005344                ADC_DMAConvCplt
  .text.ADC_DMAError
-                0x0000000008005390       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005390                ADC_DMAError
+                0x00000000080053b0       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x00000000080053b0                ADC_DMAError
  .text.HAL_ADC_ConfigChannel
-                0x00000000080053ac      0x3fc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x00000000080053ac                HAL_ADC_ConfigChannel
+                0x00000000080053cc      0x3fc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x00000000080053cc                HAL_ADC_ConfigChannel
  .text.ADC_Enable
-                0x00000000080057a8       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x00000000080057a8                ADC_Enable
+                0x00000000080057c8       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x00000000080057c8                ADC_Enable
  .text.HAL_ADC_Start_DMA
-                0x0000000008005854      0x114 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005854                HAL_ADC_Start_DMA
+                0x0000000008005874      0x114 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x0000000008005874                HAL_ADC_Start_DMA
  .text.ADC_Disable
-                0x0000000008005968       0x68 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005968                ADC_Disable
+                0x0000000008005988       0x68 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x0000000008005988                ADC_Disable
  .text.ADC_ConfigureBoostMode
-                0x00000000080059d0      0x184 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x00000000080059d0                ADC_ConfigureBoostMode
+                0x00000000080059f0      0x184 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x00000000080059f0                ADC_ConfigureBoostMode
  .text.HAL_ADC_Init
-                0x0000000008005b54      0x218 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
-                0x0000000008005b54                HAL_ADC_Init
+                0x0000000008005b74      0x218 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x0000000008005b74                HAL_ADC_Init
  .text.HAL_ADCEx_Calibration_Start
-                0x0000000008005d6c       0xa4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc_ex.o)
-                0x0000000008005d6c                HAL_ADCEx_Calibration_Start
+                0x0000000008005d8c       0xa4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc_ex.o)
+                0x0000000008005d8c                HAL_ADCEx_Calibration_Start
  .text.HAL_ADCEx_MultiModeConfigChannel
-                0x0000000008005e10       0xc4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc_ex.o)
-                0x0000000008005e10                HAL_ADCEx_MultiModeConfigChannel
+                0x0000000008005e30       0xc4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc_ex.o)
+                0x0000000008005e30                HAL_ADCEx_MultiModeConfigChannel
  .text.HAL_NVIC_SetPriorityGrouping
-                0x0000000008005ed4       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008005ed4                HAL_NVIC_SetPriorityGrouping
+                0x0000000008005ef4       0x24 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008005ef4                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x0000000008005ef8       0x7c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008005ef8                HAL_NVIC_SetPriority
+                0x0000000008005f18       0x7c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008005f18                HAL_NVIC_SetPriority
  .text.HAL_NVIC_EnableIRQ
-                0x0000000008005f74       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008005f74                HAL_NVIC_EnableIRQ
+                0x0000000008005f94       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008005f94                HAL_NVIC_EnableIRQ
  .text.HAL_NVIC_DisableIRQ
-                0x0000000008005f90       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008005f90                HAL_NVIC_DisableIRQ
+                0x0000000008005fb0       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008005fb0                HAL_NVIC_DisableIRQ
  .text.HAL_SYSTICK_Config
-                0x0000000008005fb8       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008005fb8                HAL_SYSTICK_Config
+                0x0000000008005fd8       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008005fd8                HAL_SYSTICK_Config
  .text.HAL_MPU_Disable
-                0x0000000008005fe4       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008005fe4                HAL_MPU_Disable
+                0x0000000008006004       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008006004                HAL_MPU_Disable
  .text.HAL_MPU_Enable
-                0x0000000008006000       0x20 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008006000                HAL_MPU_Enable
+                0x0000000008006020       0x20 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008006020                HAL_MPU_Enable
  .text.HAL_MPU_ConfigRegion
-                0x0000000008006020       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008006020                HAL_MPU_ConfigRegion
+                0x0000000008006040       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x0000000008006040                HAL_MPU_ConfigRegion
  .text.HAL_SYSTICK_Callback
-                0x0000000008006084        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008006084                HAL_SYSTICK_Callback
+                0x00000000080060a4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x00000000080060a4                HAL_SYSTICK_Callback
  .text.HAL_SYSTICK_IRQHandler
-                0x0000000008006088        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
-                0x0000000008006088                HAL_SYSTICK_IRQHandler
+                0x00000000080060a8        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x00000000080060a8                HAL_SYSTICK_IRQHandler
  .text.HAL_DAC_Init
-                0x0000000008006090       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dac.o)
-                0x0000000008006090                HAL_DAC_Init
+                0x00000000080060b0       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dac.o)
+                0x00000000080060b0                HAL_DAC_Init
  .text.HAL_DAC_ConfigChannel
-                0x00000000080060bc      0x130 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dac.o)
-                0x00000000080060bc                HAL_DAC_ConfigChannel
+                0x00000000080060dc      0x130 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dac.o)
+                0x00000000080060dc                HAL_DAC_ConfigChannel
  .text.DMA_CalcBaseAndBitshift
-                0x00000000080061ec       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x000000000800620c       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
  .text.DMA_CalcDMAMUXChannelBaseAndMask
-                0x00000000080062e0       0xd8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x0000000008006300       0xd8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
  .text.HAL_DMA_Init
-                0x00000000080063b8      0x37c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
-                0x00000000080063b8                HAL_DMA_Init
+                0x00000000080063d8      0x37c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x00000000080063d8                HAL_DMA_Init
  .text.HAL_DMA_Start_IT
-                0x0000000008006734      0x240 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
-                0x0000000008006734                HAL_DMA_Start_IT
+                0x0000000008006754      0x240 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x0000000008006754                HAL_DMA_Start_IT
  .text.HAL_DMA_Abort_IT
-                0x0000000008006974      0x134 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
-                0x0000000008006974                HAL_DMA_Abort_IT
+                0x0000000008006994      0x134 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x0000000008006994                HAL_DMA_Abort_IT
  .text.HAL_DMA_IRQHandler
-                0x0000000008006aa8      0x6a0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
-                0x0000000008006aa8                HAL_DMA_IRQHandler
+                0x0000000008006ac8      0x6a0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x0000000008006ac8                HAL_DMA_IRQHandler
  .text.HAL_DMA_GetError
-                0x0000000008007148        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
-                0x0000000008007148                HAL_DMA_GetError
+                0x0000000008007168        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x0000000008007168                HAL_DMA_GetError
  .text.HAL_GPIO_Init
-                0x000000000800714c      0x280 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
-                0x000000000800714c                HAL_GPIO_Init
+                0x000000000800716c      0x280 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
+                0x000000000800716c                HAL_GPIO_Init
  .text.HAL_GPIO_DeInit
-                0x00000000080073cc      0x190 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
-                0x00000000080073cc                HAL_GPIO_DeInit
+                0x00000000080073ec      0x190 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
+                0x00000000080073ec                HAL_GPIO_DeInit
  .text.HAL_GPIO_ReadPin
-                0x000000000800755c        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
-                0x000000000800755c                HAL_GPIO_ReadPin
+                0x000000000800757c        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
+                0x000000000800757c                HAL_GPIO_ReadPin
  .text.HAL_GPIO_WritePin
-                0x0000000008007568        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
-                0x0000000008007568                HAL_GPIO_WritePin
+                0x0000000008007588        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
+                0x0000000008007588                HAL_GPIO_WritePin
  .text.I2C_WaitOnTXISFlagUntilTimeout
-                0x0000000008007570       0xb8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007590       0xb8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_WaitOnSTOPFlagUntilTimeout
-                0x0000000008007628       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007648       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.HAL_I2C_Init
-                0x00000000080076d4       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x00000000080076d4                HAL_I2C_Init
+                0x00000000080076f4       0xac ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x00000000080076f4                HAL_I2C_Init
  .text.HAL_I2C_Master_Transmit
-                0x0000000008007780      0x1a8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007780                HAL_I2C_Master_Transmit
+                0x00000000080077a0      0x1a8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x00000000080077a0                HAL_I2C_Master_Transmit
  .text.HAL_I2C_Master_Transmit_DMA
-                0x0000000008007928      0x174 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007928                HAL_I2C_Master_Transmit_DMA
+                0x0000000008007948      0x174 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007948                HAL_I2C_Master_Transmit_DMA
  .text.HAL_I2C_EV_IRQHandler
-                0x0000000008007a9c       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007a9c                HAL_I2C_EV_IRQHandler
+                0x0000000008007abc       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007abc                HAL_I2C_EV_IRQHandler
  .text.HAL_I2C_MasterRxCpltCallback
-                0x0000000008007aac        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007aac                HAL_I2C_MasterRxCpltCallback
+                0x0000000008007acc        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007acc                HAL_I2C_MasterRxCpltCallback
  .text.HAL_I2C_SlaveTxCpltCallback
-                0x0000000008007ab0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007ab0                HAL_I2C_SlaveTxCpltCallback
+                0x0000000008007ad0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007ad0                HAL_I2C_SlaveTxCpltCallback
  .text.HAL_I2C_SlaveRxCpltCallback
-                0x0000000008007ab4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007ab4                HAL_I2C_SlaveRxCpltCallback
+                0x0000000008007ad4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007ad4                HAL_I2C_SlaveRxCpltCallback
  .text.HAL_I2C_AddrCallback
-                0x0000000008007ab8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007ab8                HAL_I2C_AddrCallback
+                0x0000000008007ad8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007ad8                HAL_I2C_AddrCallback
  .text.I2C_ITAddrCplt.part.0
-                0x0000000008007abc       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007adc       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.HAL_I2C_ListenCpltCallback
-                0x0000000008007b20        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007b20                HAL_I2C_ListenCpltCallback
+                0x0000000008007b40        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007b40                HAL_I2C_ListenCpltCallback
  .text.HAL_I2C_MemTxCpltCallback
-                0x0000000008007b24        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007b24                HAL_I2C_MemTxCpltCallback
+                0x0000000008007b44        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007b44                HAL_I2C_MemTxCpltCallback
  .text.HAL_I2C_MemRxCpltCallback
-                0x0000000008007b28        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007b28                HAL_I2C_MemRxCpltCallback
+                0x0000000008007b48        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007b48                HAL_I2C_MemRxCpltCallback
  .text.HAL_I2C_AbortCpltCallback
-                0x0000000008007b2c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x0000000008007b2c                HAL_I2C_AbortCpltCallback
+                0x0000000008007b4c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007b4c                HAL_I2C_AbortCpltCallback
  .text.I2C_ITError
-                0x0000000008007b30      0x114 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007b50      0x114 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_ITSlaveCplt
-                0x0000000008007c44      0x1d8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007c64      0x1d8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_Slave_ISR_IT
-                0x0000000008007e1c      0x324 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008007e3c      0x324 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_ITMasterCplt
-                0x0000000008008140       0xe8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008008160       0xe8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_Master_ISR_IT
-                0x0000000008008228      0x1f4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008008248      0x1f4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_Slave_ISR_DMA
-                0x000000000800841c      0x1e4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x000000000800843c      0x1e4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_Master_ISR_DMA
-                0x0000000008008600      0x22c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008008620      0x22c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_DMAError
-                0x000000000800882c       0x48 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x000000000800884c       0x48 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_DMAMasterTransmitCplt
-                0x0000000008008874       0x90 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008008894       0x90 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.I2C_DMAAbort
-                0x0000000008008904       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x0000000008008924       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .text.HAL_I2C_GetState
-                0x000000000800892c        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
-                0x000000000800892c                HAL_I2C_GetState
+                0x000000000800894c        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x000000000800894c                HAL_I2C_GetState
  .text.HAL_I2CEx_ConfigAnalogFilter
-                0x0000000008008934       0x54 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c_ex.o)
-                0x0000000008008934                HAL_I2CEx_ConfigAnalogFilter
+                0x0000000008008954       0x54 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c_ex.o)
+                0x0000000008008954                HAL_I2CEx_ConfigAnalogFilter
  .text.HAL_I2CEx_ConfigDigitalFilter
-                0x0000000008008988       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c_ex.o)
-                0x0000000008008988                HAL_I2CEx_ConfigDigitalFilter
+                0x00000000080089a8       0x58 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c_ex.o)
+                0x00000000080089a8                HAL_I2CEx_ConfigDigitalFilter
  .text.HAL_PWREx_ConfigSupply
-                0x00000000080089e0       0x4c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_pwr_ex.o)
-                0x00000000080089e0                HAL_PWREx_ConfigSupply
+                0x0000000008008a00       0x4c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_pwr_ex.o)
+                0x0000000008008a00                HAL_PWREx_ConfigSupply
  .text.HAL_PWREx_EnableUSBVoltageDetector
-                0x0000000008008a2c       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_pwr_ex.o)
-                0x0000000008008a2c                HAL_PWREx_EnableUSBVoltageDetector
+                0x0000000008008a4c       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_pwr_ex.o)
+                0x0000000008008a4c                HAL_PWREx_EnableUSBVoltageDetector
  .text.QSPI_Config
-                0x0000000008008a3c      0x174 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008a5c      0x174 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
  .text.HAL_QSPI_Init
-                0x0000000008008bb0       0xd8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008008bb0                HAL_QSPI_Init
+                0x0000000008008bd0       0xd8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008bd0                HAL_QSPI_Init
  .text.HAL_QSPI_DeInit
-                0x0000000008008c88       0x3c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008008c88                HAL_QSPI_DeInit
+                0x0000000008008ca8       0x3c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008ca8                HAL_QSPI_DeInit
  .text.HAL_QSPI_Command
-                0x0000000008008cc4       0xd4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008008cc4                HAL_QSPI_Command
+                0x0000000008008ce4       0xd4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008ce4                HAL_QSPI_Command
  .text.HAL_QSPI_Transmit
-                0x0000000008008d98       0xfc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008008d98                HAL_QSPI_Transmit
+                0x0000000008008db8       0xfc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008db8                HAL_QSPI_Transmit
  .text.HAL_QSPI_Receive
-                0x0000000008008e94      0x108 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008008e94                HAL_QSPI_Receive
+                0x0000000008008eb4      0x108 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008eb4                HAL_QSPI_Receive
  .text.HAL_QSPI_AutoPolling
-                0x0000000008008f9c       0xf0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008008f9c                HAL_QSPI_AutoPolling
+                0x0000000008008fbc       0xf0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008008fbc                HAL_QSPI_AutoPolling
  .text.HAL_QSPI_MemoryMapped
-                0x000000000800908c       0xc0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x000000000800908c                HAL_QSPI_MemoryMapped
+                0x00000000080090ac       0xc0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080090ac                HAL_QSPI_MemoryMapped
  .text.HAL_QSPI_ErrorCallback
-                0x000000000800914c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x000000000800914c                HAL_QSPI_ErrorCallback
+                0x000000000800916c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x000000000800916c                HAL_QSPI_ErrorCallback
  .text.QSPI_DMAAbortCplt
-                0x0000000008009150       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x0000000008009170       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
  .text.HAL_QSPI_AbortCpltCallback
-                0x0000000008009188        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008009188                HAL_QSPI_AbortCpltCallback
+                0x00000000080091a8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091a8                HAL_QSPI_AbortCpltCallback
  .text.HAL_QSPI_CmdCpltCallback
-                0x000000000800918c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x000000000800918c                HAL_QSPI_CmdCpltCallback
+                0x00000000080091ac        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091ac                HAL_QSPI_CmdCpltCallback
  .text.HAL_QSPI_RxCpltCallback
-                0x0000000008009190        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008009190                HAL_QSPI_RxCpltCallback
+                0x00000000080091b0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091b0                HAL_QSPI_RxCpltCallback
  .text.HAL_QSPI_TxCpltCallback
-                0x0000000008009194        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008009194                HAL_QSPI_TxCpltCallback
+                0x00000000080091b4        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091b4                HAL_QSPI_TxCpltCallback
  .text.HAL_QSPI_FifoThresholdCallback
-                0x0000000008009198        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x0000000008009198                HAL_QSPI_FifoThresholdCallback
+                0x00000000080091b8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091b8                HAL_QSPI_FifoThresholdCallback
  .text.HAL_QSPI_StatusMatchCallback
-                0x000000000800919c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x000000000800919c                HAL_QSPI_StatusMatchCallback
+                0x00000000080091bc        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091bc                HAL_QSPI_StatusMatchCallback
  .text.HAL_QSPI_TimeOutCallback
-                0x00000000080091a0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x00000000080091a0                HAL_QSPI_TimeOutCallback
+                0x00000000080091c0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091c0                HAL_QSPI_TimeOutCallback
  .text.HAL_QSPI_IRQHandler
-                0x00000000080091a4      0x210 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
-                0x00000000080091a4                HAL_QSPI_IRQHandler
+                0x00000000080091c4      0x210 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x00000000080091c4                HAL_QSPI_IRQHandler
  .text.HAL_RCC_OscConfig
-                0x00000000080093b4      0x51c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
-                0x00000000080093b4                HAL_RCC_OscConfig
+                0x00000000080093d4      0x51c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
+                0x00000000080093d4                HAL_RCC_OscConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x00000000080098d0      0x140 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
-                0x00000000080098d0                HAL_RCC_GetSysClockFreq
+                0x00000000080098f0      0x140 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
+                0x00000000080098f0                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_ClockConfig
-                0x0000000008009a10      0x234 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
-                0x0000000008009a10                HAL_RCC_ClockConfig
+                0x0000000008009a30      0x234 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
+                0x0000000008009a30                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetHCLKFreq
-                0x0000000008009c44       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
-                0x0000000008009c44                HAL_RCC_GetHCLKFreq
+                0x0000000008009c64       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
+                0x0000000008009c64                HAL_RCC_GetHCLKFreq
  .text.HAL_RCC_GetPCLK1Freq
-                0x0000000008009c70       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
-                0x0000000008009c70                HAL_RCC_GetPCLK1Freq
+                0x0000000008009c90       0x38 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
+                0x0000000008009c90                HAL_RCC_GetPCLK1Freq
  .text.RCCEx_PLL2_Config
-                0x0000000008009ca8       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x0000000008009cc8       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
  .text.RCCEx_PLL3_Config
-                0x0000000008009d9c       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x0000000008009dbc       0xf4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
  .text.HAL_RCCEx_PeriphCLKConfig
-                0x0000000008009e90      0xa7c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
-                0x0000000008009e90                HAL_RCCEx_PeriphCLKConfig
+                0x0000000008009eb0      0xa7c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x0000000008009eb0                HAL_RCCEx_PeriphCLKConfig
  .text.HAL_RCCEx_GetPLL2ClockFreq
-                0x000000000800a90c      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
-                0x000000000800a90c                HAL_RCCEx_GetPLL2ClockFreq
+                0x000000000800a92c      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x000000000800a92c                HAL_RCCEx_GetPLL2ClockFreq
  .text.HAL_RCCEx_GetPLL3ClockFreq
-                0x000000000800aa88      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
-                0x000000000800aa88                HAL_RCCEx_GetPLL3ClockFreq
+                0x000000000800aaa8      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x000000000800aaa8                HAL_RCCEx_GetPLL3ClockFreq
  .text.HAL_RCCEx_GetPLL1ClockFreq
-                0x000000000800ac04      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
-                0x000000000800ac04                HAL_RCCEx_GetPLL1ClockFreq
+                0x000000000800ac24      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x000000000800ac24                HAL_RCCEx_GetPLL1ClockFreq
  .text.HAL_RCCEx_GetPeriphCLKFreq
-                0x000000000800ad80      0x198 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
-                0x000000000800ad80                HAL_RCCEx_GetPeriphCLKFreq
+                0x000000000800ada0      0x198 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x000000000800ada0                HAL_RCCEx_GetPeriphCLKFreq
  .text.HAL_RCCEx_GetD1SysClockFreq
-                0x000000000800af18       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
-                0x000000000800af18                HAL_RCCEx_GetD1SysClockFreq
+                0x000000000800af38       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x000000000800af38                HAL_RCCEx_GetD1SysClockFreq
  .text.HAL_SAI_Init.part.0
-                0x000000000800af44      0x348 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800af64      0x348 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .text.HAL_SAI_InitProtocol
-                0x000000000800b28c      0x178 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
-                0x000000000800b28c                HAL_SAI_InitProtocol
+                0x000000000800b2ac      0x178 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b2ac                HAL_SAI_InitProtocol
  .text.HAL_SAI_Transmit_DMA
-                0x000000000800b404      0x124 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
-                0x000000000800b404                HAL_SAI_Transmit_DMA
+                0x000000000800b424      0x124 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b424                HAL_SAI_Transmit_DMA
  .text.HAL_SAI_Receive_DMA
-                0x000000000800b528       0xd0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
-                0x000000000800b528                HAL_SAI_Receive_DMA
+                0x000000000800b548       0xd0 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b548                HAL_SAI_Receive_DMA
  .text.HAL_SAI_TxCpltCallback
-                0x000000000800b5f8        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
-                0x000000000800b5f8                HAL_SAI_TxCpltCallback
+                0x000000000800b618        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b618                HAL_SAI_TxCpltCallback
  .text.SAI_DMATxCplt
-                0x000000000800b5fc       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b61c       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .text.HAL_SAI_TxHalfCpltCallback
-                0x000000000800b660        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
-                0x000000000800b660                HAL_SAI_TxHalfCpltCallback
+                0x000000000800b680        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b680                HAL_SAI_TxHalfCpltCallback
  .text.SAI_DMATxHalfCplt
-                0x000000000800b664        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b684        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .text.SAI_DMARxCplt
-                0x000000000800b670       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b690       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .text.SAI_DMARxHalfCplt
-                0x000000000800b6d4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b6f4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .text.HAL_SAI_ErrorCallback
-                0x000000000800b6e0        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
-                0x000000000800b6e0                HAL_SAI_ErrorCallback
+                0x000000000800b700        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b700                HAL_SAI_ErrorCallback
  .text.SAI_DMAError
-                0x000000000800b6e4       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800b704       0x6c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .text.HAL_SDRAM_Init
-                0x000000000800b750       0x54 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
-                0x000000000800b750                HAL_SDRAM_Init
+                0x000000000800b770       0x54 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
+                0x000000000800b770                HAL_SDRAM_Init
  .text.HAL_SDRAM_SendCommand
-                0x000000000800b7a4       0x40 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
-                0x000000000800b7a4                HAL_SDRAM_SendCommand
+                0x000000000800b7c4       0x40 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
+                0x000000000800b7c4                HAL_SDRAM_SendCommand
  .text.HAL_SDRAM_ProgramRefreshRate
-                0x000000000800b7e4       0x30 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
-                0x000000000800b7e4                HAL_SDRAM_ProgramRefreshRate
+                0x000000000800b804       0x30 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
+                0x000000000800b804                HAL_SDRAM_ProgramRefreshRate
  .text.SPI_CloseTransfer
-                0x000000000800b814       0xb8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
+                0x000000000800b834       0xb8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
  .text.HAL_SPI_Init
-                0x000000000800b8cc      0x15c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
-                0x000000000800b8cc                HAL_SPI_Init
+                0x000000000800b8ec      0x15c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
+                0x000000000800b8ec                HAL_SPI_Init
  .text.HAL_SPI_Transmit
-                0x000000000800ba28      0x314 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
-                0x000000000800ba28                HAL_SPI_Transmit
+                0x000000000800ba48      0x314 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
+                0x000000000800ba48                HAL_SPI_Transmit
  .text.FMC_SDRAM_Init
-                0x000000000800bd3c       0x7c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
-                0x000000000800bd3c                FMC_SDRAM_Init
+                0x000000000800bd5c       0x7c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
+                0x000000000800bd5c                FMC_SDRAM_Init
  .text.FMC_SDRAM_Timing_Init
-                0x000000000800bdb8       0x98 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
-                0x000000000800bdb8                FMC_SDRAM_Timing_Init
+                0x000000000800bdd8       0x98 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
+                0x000000000800bdd8                FMC_SDRAM_Timing_Init
  .text.FMC_SDRAM_SendCommand
-                0x000000000800be50       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
-                0x000000000800be50                FMC_SDRAM_SendCommand
+                0x000000000800be70       0x28 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
+                0x000000000800be70                FMC_SDRAM_SendCommand
  .text.FMC_SDRAM_ProgramRefreshRate
-                0x000000000800be78       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
-                0x000000000800be78                FMC_SDRAM_ProgramRefreshRate
+                0x000000000800be98       0x1c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
+                0x000000000800be98                FMC_SDRAM_ProgramRefreshRate
  .text.HAL_TIM_Base_MspInit
-                0x000000000800be94       0xa8 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
-                0x000000000800be94                HAL_TIM_Base_MspInit
+                0x000000000800beb4       0xa8 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
+                0x000000000800beb4                HAL_TIM_Base_MspInit
  .text._ZN5daisy11TimerHandle4InitERKNS0_6ConfigE
-                0x000000000800bf3c       0xc4 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
-                0x000000000800bf3c                daisy::TimerHandle::Init(daisy::TimerHandle::Config const&)
+                0x000000000800bf5c       0xc4 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
+                0x000000000800bf5c                daisy::TimerHandle::Init(daisy::TimerHandle::Config const&)
  .text._ZN5daisy11TimerHandle5StartEv
-                0x000000000800c000       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
-                0x000000000800c000                daisy::TimerHandle::Start()
+                0x000000000800c020       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
+                0x000000000800c020                daisy::TimerHandle::Start()
  .text._ZN5daisy11TimerHandle9DelayTickEm
-                0x000000000800c014       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
-                0x000000000800c014                daisy::TimerHandle::DelayTick(unsigned long)
+                0x000000000800c034       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
+                0x000000000800c034                daisy::TimerHandle::DelayTick(unsigned long)
  .text.dsy_dma_init
-                0x000000000800c024       0x98 ../../DaisyExamples/libdaisy/build/libdaisy.a(dma.o)
-                0x000000000800c024                dsy_dma_init
+                0x000000000800c044       0x98 ../../DaisyExamples/libdaisy/build/libdaisy.a(dma.o)
+                0x000000000800c044                dsy_dma_init
  .text.HAL_MDMA_Abort_IT
-                0x000000000800c0bc       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_mdma.o)
-                0x000000000800c0bc                HAL_MDMA_Abort_IT
+                0x000000000800c0dc       0x2c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_mdma.o)
+                0x000000000800c0dc                HAL_MDMA_Abort_IT
  .text.HAL_TIM_Base_Init
-                0x000000000800c0e8      0x140 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
-                0x000000000800c0e8                HAL_TIM_Base_Init
+                0x000000000800c108      0x140 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
+                0x000000000800c108                HAL_TIM_Base_Init
  .text.HAL_TIM_Base_Start
-                0x000000000800c228       0x34 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
-                0x000000000800c228                HAL_TIM_Base_Start
+                0x000000000800c248       0x34 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
+                0x000000000800c248                HAL_TIM_Base_Start
  .text.HAL_TIM_ConfigClockSource
-                0x000000000800c25c      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
-                0x000000000800c25c                HAL_TIM_ConfigClockSource
+                0x000000000800c27c      0x17c ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
+                0x000000000800c27c                HAL_TIM_ConfigClockSource
  .text.HAL_TIMEx_MasterConfigSynchronization
-                0x000000000800c3d8       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim_ex.o)
-                0x000000000800c3d8                HAL_TIMEx_MasterConfigSynchronization
+                0x000000000800c3f8       0x64 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim_ex.o)
+                0x000000000800c3f8                HAL_TIMEx_MasterConfigSynchronization
  .text._ZN7daisysp5AdEnv4InitEf
-                0x000000000800c43c       0x30 ../../DaisyExamples/DaisySP/build/libdaisysp.a(adenv.o)
-                0x000000000800c43c                daisysp::AdEnv::Init(float)
+                0x000000000800c45c       0x30 ../../DaisyExamples/DaisySP/build/libdaisysp.a(adenv.o)
+                0x000000000800c45c                daisysp::AdEnv::Init(float)
  .text._ZN7daisysp5AdEnv7ProcessEv
-                0x000000000800c46c      0x1b8 ../../DaisyExamples/DaisySP/build/libdaisysp.a(adenv.o)
-                0x000000000800c46c                daisysp::AdEnv::Process()
+                0x000000000800c48c      0x1b8 ../../DaisyExamples/DaisySP/build/libdaisysp.a(adenv.o)
+                0x000000000800c48c                daisysp::AdEnv::Process()
  .text._ZN7daisysp5ATone4InitEf
-                0x000000000800c624       0x18 ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
-                0x000000000800c624                daisysp::ATone::Init(float)
+                0x000000000800c644       0x18 ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
+                0x000000000800c644                daisysp::ATone::Init(float)
  .text._ZN7daisysp5ATone7ProcessERf
-                0x000000000800c63c       0x20 ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
-                0x000000000800c63c                daisysp::ATone::Process(float&)
+                0x000000000800c65c       0x20 ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
+                0x000000000800c65c                daisysp::ATone::Process(float&)
  .text._ZN7daisysp5ATone21CalculateCoefficientsEv
-                0x000000000800c65c       0x5c ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
-                0x000000000800c65c                daisysp::ATone::CalculateCoefficients()
+                0x000000000800c67c       0x5c ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
+                0x000000000800c67c                daisysp::ATone::CalculateCoefficients()
  .text._ZN7daisysp5Metro4InitEff
-                0x000000000800c6b8       0x24 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
-                0x000000000800c6b8                daisysp::Metro::Init(float, float)
+                0x000000000800c6d8       0x24 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
+                0x000000000800c6d8                daisysp::Metro::Init(float, float)
  .text._ZN7daisysp5Metro7ProcessEv
-                0x000000000800c6dc       0x34 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
-                0x000000000800c6dc                daisysp::Metro::Process()
+                0x000000000800c6fc       0x34 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
+                0x000000000800c6fc                daisysp::Metro::Process()
  .text._ZN7daisysp5Metro7SetFreqEf
-                0x000000000800c710       0x20 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
-                0x000000000800c710                daisysp::Metro::SetFreq(float)
+                0x000000000800c730       0x20 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
+                0x000000000800c730                daisysp::Metro::SetFreq(float)
  .text._ZN7daisysp10Oscillator7ProcessEv
-                0x000000000800c730      0x3c4 ../../DaisyExamples/DaisySP/build/libdaisysp.a(oscillator.o)
-                0x000000000800c730                daisysp::Oscillator::Process()
+                0x000000000800c750      0x3c4 ../../DaisyExamples/DaisySP/build/libdaisysp.a(oscillator.o)
+                0x000000000800c750                daisysp::Oscillator::Process()
  .text._ZN7daisysp10Oscillator12CalcPhaseIncEf
-                0x000000000800caf4       0x18 ../../DaisyExamples/DaisySP/build/libdaisysp.a(oscillator.o)
-                0x000000000800caf4                daisysp::Oscillator::CalcPhaseInc(float)
+                0x000000000800cb14       0x18 ../../DaisyExamples/DaisySP/build/libdaisysp.a(oscillator.o)
+                0x000000000800cb14                daisysp::Oscillator::CalcPhaseInc(float)
  .text._ZN7daisysp3Svf4InitEf
-                0x000000000800cb0c       0x38 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
-                0x000000000800cb0c                daisysp::Svf::Init(float)
+                0x000000000800cb2c       0x38 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
+                0x000000000800cb2c                daisysp::Svf::Init(float)
  .text._ZN7daisysp3Svf7ProcessEf
-                0x000000000800cb44       0xc8 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
-                0x000000000800cb44                daisysp::Svf::Process(float)
+                0x000000000800cb64       0xc8 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
+                0x000000000800cb64                daisysp::Svf::Process(float)
  .text._ZN7daisysp3Svf7SetFreqEf
-                0x000000000800cc0c       0xec ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
-                0x000000000800cc0c                daisysp::Svf::SetFreq(float)
+                0x000000000800cc2c       0xec ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
+                0x000000000800cc2c                daisysp::Svf::SetFreq(float)
  .text._ZN7daisysp3Svf6SetResEf
-                0x000000000800ccf8       0xf8 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
-                0x000000000800ccf8                daisysp::Svf::SetRes(float)
+                0x000000000800cd18       0xf8 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
+                0x000000000800cd18                daisysp::Svf::SetRes(float)
  .text.__aeabi_atexit
-                0x000000000800cdf0        0xa /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libstdc++_nano.a(atexit_arm.o)
-                0x000000000800cdf0                __aeabi_atexit
- *fill*         0x000000000800cdfa        0x6 
- .text.cosf     0x000000000800ce00      0x1bc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-cosf.o)
-                0x000000000800ce00                cosf
+                0x000000000800ce10        0xa /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libstdc++_nano.a(atexit_arm.o)
+                0x000000000800ce10                __aeabi_atexit
+ *fill*         0x000000000800ce1a        0x6 
+ .text.cosf     0x000000000800ce20      0x1bc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-cosf.o)
+                0x000000000800ce20                cosf
  .text.with_errnof
-                0x000000000800cfbc       0x18 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
- .text.xflowf   0x000000000800cfd4       0x20 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800cfdc       0x18 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+ .text.xflowf   0x000000000800cff4       0x20 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
  .text.__math_uflowf
-                0x000000000800cff4        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
-                0x000000000800cff4                __math_uflowf
+                0x000000000800d014        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800d014                __math_uflowf
  .text.__math_may_uflowf
-                0x000000000800d000        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
-                0x000000000800d000                __math_may_uflowf
+                0x000000000800d020        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800d020                __math_may_uflowf
  .text.__math_oflowf
-                0x000000000800d00c        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
-                0x000000000800d00c                __math_oflowf
+                0x000000000800d02c        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800d02c                __math_oflowf
  .text.__math_divzerof
-                0x000000000800d018       0x24 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
-                0x000000000800d018                __math_divzerof
+                0x000000000800d038       0x24 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800d038                __math_divzerof
  .text.__math_invalidf
-                0x000000000800d03c       0x20 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
-                0x000000000800d03c                __math_invalidf
- .text.expf     0x000000000800d05c       0xe4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp.o)
-                0x000000000800d05c                expf
- .text.logf     0x000000000800d140       0xc8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log.o)
-                0x000000000800d140                logf
- .text.powf     0x000000000800d208      0x328 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow.o)
-                0x000000000800d208                powf
- .text.sinf     0x000000000800d530      0x20c /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sinf.o)
-                0x000000000800d530                sinf
- .text.fmodf    0x000000000800d73c       0x54 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_fmod.o)
-                0x000000000800d73c                fmodf
- .text.sqrtf    0x000000000800d790       0x50 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_sqrt.o)
-                0x000000000800d790                sqrtf
+                0x000000000800d05c       0x20 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800d05c                __math_invalidf
+ .text.expf     0x000000000800d07c       0xe4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp.o)
+                0x000000000800d07c                expf
+ .text.logf     0x000000000800d160       0xc8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log.o)
+                0x000000000800d160                logf
+ .text.powf     0x000000000800d228      0x328 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow.o)
+                0x000000000800d228                powf
+ .text.sinf     0x000000000800d550      0x20c /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sinf.o)
+                0x000000000800d550                sinf
+ .text.fmodf    0x000000000800d75c       0x54 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_fmod.o)
+                0x000000000800d75c                fmodf
+ .text.sqrtf    0x000000000800d7b0       0x50 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_sqrt.o)
+                0x000000000800d7b0                sqrtf
  .text.__ieee754_fmodf
-                0x000000000800d7e0      0x120 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_fmod.o)
-                0x000000000800d7e0                __ieee754_fmodf
+                0x000000000800d800      0x120 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_fmod.o)
+                0x000000000800d800                __ieee754_fmodf
  .text.__ieee754_sqrtf
-                0x000000000800d900        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_sqrt.o)
-                0x000000000800d900                __ieee754_sqrtf
+                0x000000000800d920        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_sqrt.o)
+                0x000000000800d920                __ieee754_sqrtf
  .text.__cxa_atexit
-                0x000000000800d908       0x1c /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-cxa_atexit.o)
-                0x000000000800d908                __cxa_atexit
- .text.__errno  0x000000000800d924        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-errno.o)
-                0x000000000800d924                __errno
+                0x000000000800d928       0x1c /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-cxa_atexit.o)
+                0x000000000800d928                __cxa_atexit
+ .text.__errno  0x000000000800d944        0xc /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-errno.o)
+                0x000000000800d944                __errno
  .text.__libc_init_array
-                0x000000000800d930       0x48 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-init.o)
-                0x000000000800d930                __libc_init_array
- .text.memcpy   0x000000000800d978       0x1c /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memcpy-stub.o)
-                0x000000000800d978                memcpy
- .text.memset   0x000000000800d994       0x10 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memset.o)
-                0x000000000800d994                memset
+                0x000000000800d950       0x48 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-init.o)
+                0x000000000800d950                __libc_init_array
+ .text.memcpy   0x000000000800d998       0x1c /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+                0x000000000800d998                memcpy
+ .text.memset   0x000000000800d9b4       0x10 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memset.o)
+                0x000000000800d9b4                memset
  *(.rodata)
- .rodata        0x000000000800d9a4      0x200 build/Fake08.o
- .rodata        0x000000000800dba4       0x20 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
- .rodata        0x000000000800dbc4       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
- .rodata        0x000000000800dbd4       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
+ .rodata        0x000000000800d9c4      0x200 build/Fake08.o
+ .rodata        0x000000000800dbc4       0x20 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+ .rodata        0x000000000800dbe4       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+ .rodata        0x000000000800dbf4       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
  *(.rodata*)
  .rodata._ZN5daisy10DaisyField4InitEb.str1.4
-                0x000000000800dbe4        0x6 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
- *fill*         0x000000000800dbea        0x2 
+                0x000000000800dc04        0x6 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+ *fill*         0x000000000800dc0a        0x2 
  .rodata._ZL20field_led_i2c_config
-                0x000000000800dbec        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x000000000800dc0c        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
  .rodata._ZL8seedgpio
-                0x000000000800dbf8       0x3e ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
- *fill*         0x000000000800dc36        0x2 
+                0x000000000800dc18       0x3e ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+ *fill*         0x000000000800dc56        0x2 
  .rodata._ZL16dsy_adc_rank_map
-                0x000000000800dc38       0x40 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x000000000800dc58       0x40 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
  .rodata.HAL_QSPI_MspInit.str1.4
-                0x000000000800dc78        0x7 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
- *fill*         0x000000000800dc7f        0x1 
+                0x000000000800dc98        0x7 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
+ *fill*         0x000000000800dc9f        0x1 
  .rodata.CSWTCH.31
-                0x000000000800dc80        0x3 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
- *fill*         0x000000000800dc83        0x1 
+                0x000000000800dca0        0x3 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+ *fill*         0x000000000800dca3        0x1 
  .rodata.CSWTCH.32
-                0x000000000800dc84        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x000000000800dca4        0xc ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
  .rodata.CSWTCH.39
-                0x000000000800dc90       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x000000000800dcb0       0x14 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
  .rodata.D1CorePrescTable
-                0x000000000800dca4       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(system_stm32h7xx.o)
-                0x000000000800dca4                D1CorePrescTable
+                0x000000000800dcc4       0x10 ../../DaisyExamples/libdaisy/build/libdaisy.a(system_stm32h7xx.o)
+                0x000000000800dcc4                D1CorePrescTable
  .rodata.gpio_hal_pin_map
-                0x000000000800dcb4       0x20 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
+                0x000000000800dcd4       0x20 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
  .rodata.gpio_hal_port_map
-                0x000000000800dcd4       0x30 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
+                0x000000000800dcf4       0x30 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
  .rodata.flagBitshiftOffset.0
-                0x000000000800dd04        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
- *fill*         0x000000000800dd0c        0x4 
+                0x000000000800dd24        0x8 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+ *fill*         0x000000000800dd2c        0x4 
  .rodata.__exp2f_data
-                0x000000000800dd10      0x148 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp2_data.o)
-                0x000000000800dd10                __exp2f_data
+                0x000000000800dd30      0x148 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp2_data.o)
+                0x000000000800dd30                __exp2f_data
  .rodata.__logf_data
-                0x000000000800de58      0x120 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log_data.o)
-                0x000000000800de58                __logf_data
+                0x000000000800de78      0x120 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log_data.o)
+                0x000000000800de78                __logf_data
  .rodata.__powf_log2_data
-                0x000000000800df78      0x128 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow_log2_data.o)
-                0x000000000800df78                __powf_log2_data
+                0x000000000800df98      0x128 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow_log2_data.o)
+                0x000000000800df98                __powf_log2_data
  .rodata.__inv_pio4
-                0x000000000800e0a0       0x60 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sincosf_data.o)
-                0x000000000800e0a0                __inv_pio4
+                0x000000000800e0c0       0x60 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sincosf_data.o)
+                0x000000000800e0c0                __inv_pio4
  .rodata.__sincosf_table
-                0x000000000800e100       0xe0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sincosf_data.o)
-                0x000000000800e100                __sincosf_table
- .rodata.Zero   0x000000000800e1e0        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_fmod.o)
+                0x000000000800e120       0xe0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sincosf_data.o)
+                0x000000000800e120                __sincosf_table
+ .rodata.Zero   0x000000000800e200        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_fmod.o)
  *(.glue_7)
- .glue_7        0x000000000800e1e8        0x0 linker stubs
+ .glue_7        0x000000000800e208        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x000000000800e1e8        0x0 linker stubs
+ .glue_7t       0x000000000800e208        0x0 linker stubs
  *(.init)
- .init          0x000000000800e1e8        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crti.o
-                0x000000000800e1e8                _init
- .init          0x000000000800e1ec        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtn.o
+ .init          0x000000000800e208        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crti.o
+                0x000000000800e208                _init
+ .init          0x000000000800e20c        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtn.o
  *(.fini)
- .fini          0x000000000800e1f4        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crti.o
-                0x000000000800e1f4                _fini
- .fini          0x000000000800e1f8        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtn.o
-                0x000000000800e200                . = ALIGN (0x4)
-                0x000000000800e200                _etext = .
+ .fini          0x000000000800e214        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crti.o
+                0x000000000800e214                _fini
+ .fini          0x000000000800e218        0x8 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtn.o
+                0x000000000800e220                . = ALIGN (0x4)
+                0x000000000800e220                _etext = .
 
-.eh_frame       0x000000000800e200        0x0
- .eh_frame      0x000000000800e200        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
+.eh_frame       0x000000000800e220        0x0
+ .eh_frame      0x000000000800e220        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
 
-.vfp11_veneer   0x000000000800e200        0x0
- .vfp11_veneer  0x000000000800e200        0x0 linker stubs
+.vfp11_veneer   0x000000000800e220        0x0
+ .vfp11_veneer  0x000000000800e220        0x0 linker stubs
 
-.v4_bx          0x000000000800e200        0x0
- .v4_bx         0x000000000800e200        0x0 linker stubs
+.v4_bx          0x000000000800e220        0x0
+ .v4_bx         0x000000000800e220        0x0 linker stubs
 
-.iplt           0x000000000800e200        0x0
- .iplt          0x000000000800e200        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
+.iplt           0x000000000800e220        0x0
+ .iplt          0x000000000800e220        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
 
-.rel.dyn        0x000000000800e200        0x0
- .rel.iplt      0x000000000800e200        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
+.rel.dyn        0x000000000800e220        0x0
+ .rel.iplt      0x000000000800e220        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
 
-.ARM.extab      0x000000000800e200        0x0
-                0x000000000800e200                . = ALIGN (0x4)
+.ARM.extab      0x000000000800e220        0x0
+                0x000000000800e220                . = ALIGN (0x4)
  *(.ARM.extab)
  *(.gnu.linkonce.armextab.*)
-                0x000000000800e200                . = ALIGN (0x4)
+                0x000000000800e220                . = ALIGN (0x4)
 
-.exidx          0x000000000800e200        0x0
-                0x000000000800e200                . = ALIGN (0x4)
+.exidx          0x000000000800e220        0x0
+                0x000000000800e220                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__exidx_start = .)
  *(.ARM.exidx*)
-                0x000000000800e200                . = ALIGN (0x4)
+                0x000000000800e220                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__exidx_end = .)
 
 .ARM.attributes
-                0x000000000800e200       0x2e
+                0x000000000800e220       0x2e
  *(.ARM.attributes)
  .ARM.attributes
-                0x000000000800e200       0x1e /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crti.o
+                0x000000000800e220       0x1e /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crti.o
  .ARM.attributes
-                0x000000000800e21e       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
+                0x000000000800e23e       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
  .ARM.attributes
-                0x000000000800e250       0x32 build/startup_stm32h750xx.o
+                0x000000000800e270       0x32 build/startup_stm32h750xx.o
  .ARM.attributes
-                0x000000000800e282       0x32 build/Fake08.o
+                0x000000000800e2a2       0x32 build/Fake08.o
  .ARM.attributes
-                0x000000000800e2b4       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+                0x000000000800e2d4       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
  .ARM.attributes
-                0x000000000800e2e6       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
+                0x000000000800e306       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_seed.o)
  .ARM.attributes
-                0x000000000800e318       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(codec_ak4556.o)
+                0x000000000800e338       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(codec_ak4556.o)
  .ARM.attributes
-                0x000000000800e34a       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(sdram.o)
+                0x000000000800e36a       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(sdram.o)
  .ARM.attributes
-                0x000000000800e37c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+                0x000000000800e39c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
  .ARM.attributes
-                0x000000000800e3ae       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
+                0x000000000800e3ce       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(ctrl.o)
  .ARM.attributes
-                0x000000000800e3e0       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(gatein.o)
+                0x000000000800e400       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(gatein.o)
  .ARM.attributes
-                0x000000000800e412       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
+                0x000000000800e432       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
  .ARM.attributes
-                0x000000000800e444       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(parameter.o)
+                0x000000000800e464       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(parameter.o)
  .ARM.attributes
-                0x000000000800e476       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(switch.o)
+                0x000000000800e496       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(switch.o)
  .ARM.attributes
-                0x000000000800e4a8       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
+                0x000000000800e4c8       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(adc.o)
  .ARM.attributes
-                0x000000000800e4da       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(dac.o)
+                0x000000000800e4fa       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(dac.o)
  .ARM.attributes
-                0x000000000800e50c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
+                0x000000000800e52c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(gpio.o)
  .ARM.attributes
-                0x000000000800e53e       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
+                0x000000000800e55e       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(i2c.o)
  .ARM.attributes
-                0x000000000800e570       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
+                0x000000000800e590       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(qspi.o)
  .ARM.attributes
-                0x000000000800e5a2       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
+                0x000000000800e5c2       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(sai.o)
  .ARM.attributes
-                0x000000000800e5d4       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
+                0x000000000800e5f4       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(spi.o)
  .ARM.attributes
-                0x000000000800e606       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x000000000800e626       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
  .ARM.attributes
-                0x000000000800e638       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(system_stm32h7xx.o)
+                0x000000000800e658       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(system_stm32h7xx.o)
  .ARM.attributes
-                0x000000000800e66a       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
+                0x000000000800e68a       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(hal_map.o)
  .ARM.attributes
-                0x000000000800e69c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
+                0x000000000800e6bc       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal.o)
  .ARM.attributes
-                0x000000000800e6ce       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
+                0x000000000800e6ee       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc.o)
  .ARM.attributes
-                0x000000000800e700       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc_ex.o)
+                0x000000000800e720       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_adc_ex.o)
  .ARM.attributes
-                0x000000000800e732       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
+                0x000000000800e752       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_cortex.o)
  .ARM.attributes
-                0x000000000800e764       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dac.o)
+                0x000000000800e784       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dac.o)
  .ARM.attributes
-                0x000000000800e796       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
+                0x000000000800e7b6       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_dma.o)
  .ARM.attributes
-                0x000000000800e7c8       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
+                0x000000000800e7e8       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_gpio.o)
  .ARM.attributes
-                0x000000000800e7fa       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
+                0x000000000800e81a       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c.o)
  .ARM.attributes
-                0x000000000800e82c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c_ex.o)
+                0x000000000800e84c       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_i2c_ex.o)
  .ARM.attributes
-                0x000000000800e85e       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_pwr_ex.o)
+                0x000000000800e87e       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_pwr_ex.o)
  .ARM.attributes
-                0x000000000800e890       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
+                0x000000000800e8b0       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_qspi.o)
  .ARM.attributes
-                0x000000000800e8c2       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
+                0x000000000800e8e2       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc.o)
  .ARM.attributes
-                0x000000000800e8f4       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
+                0x000000000800e914       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_rcc_ex.o)
  .ARM.attributes
-                0x000000000800e926       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
+                0x000000000800e946       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sai.o)
  .ARM.attributes
-                0x000000000800e958       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
+                0x000000000800e978       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_sdram.o)
  .ARM.attributes
-                0x000000000800e98a       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
+                0x000000000800e9aa       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_spi.o)
  .ARM.attributes
-                0x000000000800e9bc       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
+                0x000000000800e9dc       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_ll_fmc.o)
  .ARM.attributes
-                0x000000000800e9ee       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
+                0x000000000800ea0e       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(tim.o)
  .ARM.attributes
-                0x000000000800ea20       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(dma.o)
+                0x000000000800ea40       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(dma.o)
  .ARM.attributes
-                0x000000000800ea52       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_mdma.o)
+                0x000000000800ea72       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_mdma.o)
  .ARM.attributes
-                0x000000000800ea84       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
+                0x000000000800eaa4       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
  .ARM.attributes
-                0x000000000800eab6       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim_ex.o)
+                0x000000000800ead6       0x32 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim_ex.o)
  .ARM.attributes
-                0x000000000800eae8       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(adenv.o)
+                0x000000000800eb08       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(adenv.o)
  .ARM.attributes
-                0x000000000800eb1a       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
+                0x000000000800eb3a       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(atone.o)
  .ARM.attributes
-                0x000000000800eb4c       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
+                0x000000000800eb6c       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(metro.o)
  .ARM.attributes
-                0x000000000800eb7e       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(oscillator.o)
+                0x000000000800eb9e       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(oscillator.o)
  .ARM.attributes
-                0x000000000800ebb0       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
+                0x000000000800ebd0       0x32 ../../DaisyExamples/DaisySP/build/libdaisysp.a(svf.o)
  .ARM.attributes
-                0x000000000800ebe2       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libstdc++_nano.a(atexit_arm.o)
+                0x000000000800ec02       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libstdc++_nano.a(atexit_arm.o)
  .ARM.attributes
-                0x000000000800ec14       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-cosf.o)
+                0x000000000800ec34       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-cosf.o)
  .ARM.attributes
-                0x000000000800ec46       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
+                0x000000000800ec66       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-math_errf.o)
  .ARM.attributes
-                0x000000000800ec78       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp.o)
+                0x000000000800ec98       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp.o)
  .ARM.attributes
-                0x000000000800ecaa       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp2_data.o)
+                0x000000000800ecca       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_exp2_data.o)
  .ARM.attributes
-                0x000000000800ecda       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log.o)
+                0x000000000800ecfa       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log.o)
  .ARM.attributes
-                0x000000000800ed0c       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log_data.o)
+                0x000000000800ed2c       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log_data.o)
  .ARM.attributes
-                0x000000000800ed3c       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow.o)
+                0x000000000800ed5c       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow.o)
  .ARM.attributes
-                0x000000000800ed6e       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow_log2_data.o)
+                0x000000000800ed8e       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_pow_log2_data.o)
  .ARM.attributes
-                0x000000000800ed9e       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sincosf_data.o)
+                0x000000000800edbe       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sincosf_data.o)
  .ARM.attributes
-                0x000000000800edce       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sinf.o)
+                0x000000000800edee       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sinf.o)
  .ARM.attributes
-                0x000000000800ee00       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_fmod.o)
+                0x000000000800ee20       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_fmod.o)
  .ARM.attributes
-                0x000000000800ee32       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_sqrt.o)
+                0x000000000800ee52       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-wf_sqrt.o)
  .ARM.attributes
-                0x000000000800ee64       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_fmod.o)
+                0x000000000800ee84       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_fmod.o)
  .ARM.attributes
-                0x000000000800ee96       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_sqrt.o)
+                0x000000000800eeb6       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-ef_sqrt.o)
  .ARM.attributes
-                0x000000000800eec8       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-s_lib_ver.o)
+                0x000000000800eee8       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-s_lib_ver.o)
  .ARM.attributes
-                0x000000000800eef8       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-cxa_atexit.o)
+                0x000000000800ef18       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-cxa_atexit.o)
  .ARM.attributes
-                0x000000000800ef2a       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-errno.o)
+                0x000000000800ef4a       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-errno.o)
  .ARM.attributes
-                0x000000000800ef5c       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-impure.o)
+                0x000000000800ef7c       0x30 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x000000000800ef8c       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-init.o)
+                0x000000000800efac       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-init.o)
  .ARM.attributes
-                0x000000000800efbe       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memcpy-stub.o)
+                0x000000000800efde       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x000000000800eff0       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memset.o)
+                0x000000000800f010       0x32 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libc_nano.a(lib_a-memset.o)
  .ARM.attributes
-                0x000000000800f022       0x1e /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/libgcc.a(_arm_addsubdf3.o)
+                0x000000000800f042       0x1e /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/libgcc.a(_arm_addsubdf3.o)
  .ARM.attributes
-                0x000000000800f040       0x1e /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtn.o
+                0x000000000800f060       0x1e /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtn.o
 
-.preinit_array  0x000000000800e200        0x0
-                0x000000000800e200                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x000000000800e220        0x0
+                0x000000000800e220                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x000000000800e200                PROVIDE (__preinit_array_end = .)
+                0x000000000800e220                PROVIDE (__preinit_array_end = .)
 
-.init_array     0x000000000800e200       0x18
-                0x000000000800e200                PROVIDE (__init_array_start = .)
+.init_array     0x000000000800e220       0x18
+                0x000000000800e220                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x000000000800e200        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
- .init_array    0x000000000800e204        0x4 build/Fake08.o
- .init_array    0x000000000800e208        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
- .init_array    0x000000000800e20c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
- .init_array    0x000000000800e210        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
- .init_array    0x000000000800e214        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
-                0x000000000800e218                PROVIDE (__init_array_end = .)
+ .init_array    0x000000000800e220        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
+ .init_array    0x000000000800e224        0x4 build/Fake08.o
+ .init_array    0x000000000800e228        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(daisy_field.o)
+ .init_array    0x000000000800e22c        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(audio.o)
+ .init_array    0x000000000800e230        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(oled_display.o)
+ .init_array    0x000000000800e234        0x4 ../../DaisyExamples/libdaisy/build/libdaisy.a(system.o)
+                0x000000000800e238                PROVIDE (__init_array_end = .)
 
-.fini_array     0x000000000800e218        0x4
+.fini_array     0x000000000800e238        0x4
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(.fini_array*)
- .fini_array    0x000000000800e218        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
+ .fini_array    0x000000000800e238        0x4 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
  *(SORT_BY_NAME(.fini_array.*))
                 [!provide]                        PROVIDE (__fini_array_end = .)
 
-.data           0x0000000024000000      0x128 load address 0x000000000800e21c
+.data           0x0000000024000000      0x128 load address 0x000000000800e23c
                 0x0000000024000000                . = ALIGN (0x4)
                 0x0000000024000000                _sdata = .
                 [!provide]                        PROVIDE (__data_start__ = _sdata)
@@ -3367,12 +3370,12 @@ LOAD /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-
                 0x0000000024000128                . = ALIGN (0x4)
                 0x0000000024000128                _edata = .
                 [!provide]                        PROVIDE (__data_end__ = _edata)
-                0x000000000800e21c                _sidata = LOADADDR (.data)
+                0x000000000800e23c                _sidata = LOADADDR (.data)
 
-.igot.plt       0x0000000024000128        0x0 load address 0x000000000800e344
+.igot.plt       0x0000000024000128        0x0 load address 0x000000000800e364
  .igot.plt      0x0000000024000128        0x0 /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/thumb/v7e-m+dp/hard/crtbegin.o
 
-.bss            0x0000000024000128     0x1c08 load address 0x000000000800e344
+.bss            0x0000000024000128     0x1c08 load address 0x000000000800e364
                 0x0000000024000128                . = ALIGN (0x4)
                 0x0000000024000128                _sbss = .
                 0x0000000024000128                PROVIDE (__bss_start__ = _sbss)
@@ -4105,6 +4108,7 @@ BDMA_Channel5_IRQHandler                          build/startup_stm32h750xx.o
 BDMA_Channel6_IRQHandler                          build/startup_stm32h750xx.o
 BDMA_Channel7_IRQHandler                          build/startup_stm32h750xx.o
 BusFault_Handler                                  build/startup_stm32h750xx.o
+Buzz()                                            build/Fake08.o
 CEC_IRQHandler                                    build/startup_stm32h750xx.o
 COMP1_IRQHandler                                  build/startup_stm32h750xx.o
 CRS_IRQHandler                                    build/startup_stm32h750xx.o
@@ -5077,7 +5081,6 @@ TIM_OC2_SetConfig                                 ../../DaisyExamples/libdaisy/b
                                                   ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim_ex.o)
 TIM_TI1_SetConfig                                 ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim.o)
                                                   ../../DaisyExamples/libdaisy/build/libdaisy.a(stm32h7xx_hal_tim_ex.o)
-Tom()                                             build/Fake08.o
 UART4_IRQHandler                                  build/startup_stm32h750xx.o
 UART5_IRQHandler                                  build/startup_stm32h750xx.o
 UART7_IRQHandler                                  build/startup_stm32h750xx.o
@@ -5610,6 +5613,7 @@ hardware_init_hook                                /usr/local/Caskroom/gcc-arm-em
 highPass                                          build/Fake08.o
 kck                                               build/Fake08.o
 keyboard_leds                                     build/Fake08.o
+knob_leds                                         build/Fake08.o
 kold                                              build/Fake08.o
 kvals                                             build/Fake08.o
 logf                                              /usr/local/Caskroom/gcc-arm-embedded/10-2020-q4-major/gcc-arm-none-eabi-10-2020-q4-major/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/libm.a(lib_a-sf_log.o)

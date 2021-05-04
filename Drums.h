@@ -137,9 +137,9 @@ void Laser()
   pitchEnv[3].Trigger();
   trig[3] = 1.0f;
 }
-void Tom()
+void Buzz()
 {
-  //Tom goes here
+  //Buzz goes here
   ampEnv[4].Trigger();
   pitchEnv[4].Trigger();
   trig[4] = 1.0f;
