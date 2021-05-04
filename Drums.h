@@ -28,7 +28,7 @@ float kold[NUM_CONTROLS];
 float mPitch[] = {2000.0f, 2000.0f, 4000.0f, 4000.0f, 200.0f};
 float mDec[] = {0.3f, 0.5f, 0.5f, 1.0f, 0.5f};
 
-float oPitch[] = {50.0f, 1000.0f, 3000.0f, 500.0f, 100.0f};
+float oPitch[] = {50.0f, 1000.0f, 3000.0f, 200.0f, 100.0f};
 float oDec[] = {0.01f, 0.1f, 0.05f, 0.1f, 0.1f};
 
 float trig[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
@@ -56,7 +56,18 @@ size_t keyboard_leds[] = {
         hardware.LED_KEY_B5,
         hardware.LED_KEY_B6,
         hardware.LED_KEY_B7,
-        hardware.LED_KEY_B8,
+        hardware.LED_KEY_B8
+  };
+
+  size_t knob_leds[] = {
+        hardware.LED_KNOB_1,
+        hardware.LED_KNOB_2,
+        hardware.LED_KNOB_3,
+        hardware.LED_KNOB_4,
+        hardware.LED_KNOB_5,
+        hardware.LED_KNOB_6,
+        hardware.LED_KNOB_7,
+        hardware.LED_KNOB_8
   };
 
 //We have 3 white noise generator

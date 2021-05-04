@@ -5,7 +5,11 @@
 void AudioCallback(float* in, float* out, size_t size)
 {
   //floats here are effectively signals, sig being the output
-    float inKick, inSnare, inHat, kick_out, kick_noise, kick_pitch, snare_noise, hat_noise, noise_out, snare_out, kick_env_out, snr_env_out, hat_env_out, hat_out, cv_env_out, sig;
+    float inKick, kick_out, kick_noise, kick_pitch, kick_env_out, 
+    inSnare, snare_noise, snare_out, snr_env_out,
+    inHat, hat_noise, hat_env_out, hat_out,
+    inLaser, laser_out, laser_pitch, laser_env_out, 
+    cv_env_out, sig, noise_out;
 
     
     //call ProcessTick (defined below)
@@ -18,45 +22,39 @@ void AudioCallback(float* in, float* out, size_t size)
     for(size_t i = 0; i < size; i += 2)
     {
         //envelope signals
+        kick_env_out = ampEnv[0].Process();
         snr_env_out = ampEnv[1].Process();
         hat_env_out = ampEnv[2].Process();
-        kick_env_out = ampEnv[0].Process();
-        cv_env_out = ampEnv[3].Process();
+        laser_env_out = ampEnv[3].Process();
 
-        kick_noise = noise[0].Process();
         snare_noise = noise[1].Process();
         hat_noise = noise[2].Process();
 
-        kick_pitch = pitchEnv[0].Process();
-        kick_pitch *= mPitch[0];
-        kick_pitch += oPitch[0];
-
-        
+        //kick
+        kick_pitch = pitchEnv[0].Process();        
         osc[0].SetFreq(kick_pitch);
         osc[0].SetAmp(kick_env_out * kick_env_out * params[0][3]);
         kick_out = osc[0].Process() + (kick_noise * 0.001 * kick_env_out * kick_env_out);        
         
-       
-        /*
-        kck.SetFreq(kick_pitch);
-        kck.Process(kick_noise);
-        inKick = kck.Low();
-        kick_out = highPass[0].Process(inKick) * kick_env_out * params[0][3];
-        */
-
-        //kick made from filter with simulation of passive noise 
-                
+        //snare
         sn.Process(snare_noise * snr_env_out * snr_env_out);
         inSnare = sn.Low();
         snare_out = highPass[1].Process(inSnare) * params[1][3] * params[1][3];
         
+        //hat
         flt.Process(hat_noise * hat_env_out);
         inHat = flt.High();
         hat_out = highPass[2].Process(inHat) * params[2][3] * params[2][3];
 
+        //laser
+        laser_pitch = pitchEnv[3].Process();        
+        osc[3].SetFreq(laser_pitch);
+        osc[3].SetAmp(laser_env_out * laser_env_out * params[3][3]);
+        laser_out = osc[3].Process() + (laser_env_out * laser_env_out);   
+
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-        sig = (snare_out + (kick_out) + hat_out);
+        sig = (snare_out + kick_out + hat_out + laser_out);
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
@@ -134,7 +132,7 @@ void SetupDrums(float samplerate)
 //put our drums into an array of function pointers so they can be called by mode number in loop later 
 typedef void (*Drummer)();
 
-Drummer Drum[] = {Kick, Snare, Hat, Laser, Tom};
+Drummer Drum[] = {Kick, Snare, Hat, Laser, Buzz};
 
 //function for setting the sequence
 void SetSeq(bool* seq, bool in)
@@ -296,6 +294,7 @@ void UpdateVars()
   {
     if (abs(kvals[i]-kold[i]) > 0.005)
     {
+      //apply the tone controls to the params matrix
       if(i < 4)
       {
         params[mode][i] = kvals[i];
@@ -307,7 +306,7 @@ void UpdateVars()
   //apply params to envelopes with multipliers and offsets
   for(uint8_t i = 0; i < NUM_MODES; i++)
   {
-    pitchEnv[i].SetMax(params[i][0]);
+    pitchEnv[i].SetMax(params[i][0] * mPitch[i] + oPitch[i]);
     ampEnv[i].SetTime(ADENV_SEG_DECAY, params[i][1] * mDec[i] + oDec[i]);
     //gain
   }
@@ -325,7 +324,12 @@ void UpdateVars()
   flt.SetFreq(params[2][0] * mPitch[2] + oPitch[2]);
   flt.SetRes(params[2][2]);
 
+  //laser
+  pitchEnv[3].SetTime(ADENV_SEG_DECAY, ((params[3][2] * mDec[3]) + (oDec[3])));
+
+
   tempo = kvals[6];
+
   //only send the tempo value if we're playing
   if (tick.GetFreq())
       {
