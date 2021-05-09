@@ -5,12 +5,10 @@
 void AudioCallback(float* in, float* out, size_t size)
 {
   //floats here are effectively signals, sig being the output
-    float inKick, kick_out, kick_noise, kick_pitch, kick_env_out, 
+    float kick_out, kick_noise, kick_pitch, kick_env_out, 
     inSnare, snare_noise, snare_out, snr_env_out,
-    inHat, hat_noise, hat_env_out, hat_out,
-    inLaser, laser_out, laser_pitch, laser_env_out, 
-    inBuzz, buzz_out, buzz_pitch, buzz_env_out,
-    cv_env_out, sig, noise_out;
+    inHat, hat_noise, hat_env_out, hat_out, 
+    cv1_out, cv2_out, sig;
 
     
     //call ProcessTick (defined below)
@@ -26,9 +24,7 @@ void AudioCallback(float* in, float* out, size_t size)
         kick_env_out = ampEnv[0].Process();
         snr_env_out = ampEnv[1].Process();
         hat_env_out = ampEnv[2].Process();
-        laser_env_out = ampEnv[3].Process();
-        buzz_env_out = ampEnv[4].Process();
-
+        
         snare_noise = noise[0].Process();
         hat_noise = noise[1].Process();
 
@@ -48,18 +44,15 @@ void AudioCallback(float* in, float* out, size_t size)
         inHat = flt.High();
         hat_out = highPass[1].Process(inHat) * params[2][3] * params[2][3];
 
-        //laser
-        laser_pitch = pitchEnv[3].Process();        
-        osc[3].SetFreq(laser_pitch);
-        osc[3].SetAmp(laser_env_out * laser_env_out * params[3][3]);
-        laser_out = osc[3].Process();   
-
-        //buzz
- 
+        //CV outs
+        cv1_out = ampEnv[3].Process();
+        cv2_out = ampEnv[4].Process();
+        hardware.SetCvOut1(cv1_out * 4095);
+        hardware.SetCvOut2(cv2_out * 4095);
 
         //add each signal together (divide by number of sources)
         //TODO add gain control to each mode
-        sig = (snare_out + kick_out + hat_out + laser_out + buzz_out);
+        sig = (snare_out + kick_out + hat_out);
 
          //output resultant signal to both stereo channels
         out[i]     = sig;
@@ -136,7 +129,7 @@ void SetupDrums(float samplerate)
 //put our drums into an array of function pointers so they can be called by mode number in loop later 
 typedef void (*Drummer)();
 
-Drummer Drum[] = {Kick, Snare, Hat, Laser, Buzz};
+Drummer Drum[] = {Kick, Snare, Hat, CV1, CV2};
 
 //function for setting the sequence
 void SetSeq(bool* seq, bool in)
@@ -209,7 +202,8 @@ int main(void)
     hardware.StartAudio(AudioCallback);
 
     // Loop forever
-    for(;;) {}
+    for(;;) {
+    }
 }
 
 
@@ -328,13 +322,17 @@ void UpdateVars()
   flt.SetFreq(params[2][0] * mPitch[2] + oPitch[2]);
   flt.SetRes(params[2][2]);
 
-  //laser
-  pitchEnv[3].SetMin((params[3][0] * mPitch[3]) + oPitch[3]);
-  pitchEnv[3].SetMax((params[3][1] * mPitch[3]) + oPitch[3]);
-  pitchEnv[3].SetTime(ADENV_SEG_DECAY, ((params[3][2] * mDec[3]) + (oDec[3])));
-  ampEnv[3].SetTime(ADENV_SEG_DECAY, ((params[3][2] * mDec[3]) + (oDec[3])));
+  //CV1
+  ampEnv[3].SetMin(params[3][0]);
+  ampEnv[3].SetMax(params[3][1]);
+  ampEnv[3].SetTime(ADENV_SEG_ATTACK, ((params[3][2] * mDec[3]) + (oDec[3])));
+  ampEnv[3].SetTime(ADENV_SEG_DECAY, ((params[3][3] * mDec[3]) + (oDec[3])));
 
-  //muzz
+  //CV2
+  ampEnv[4].SetMin(params[4][0]);
+  ampEnv[4].SetMax(params[4][1]);
+  ampEnv[4].SetTime(ADENV_SEG_ATTACK, ((params[4][2] * mDec[4]) + (oDec[4])));
+  ampEnv[4].SetTime(ADENV_SEG_DECAY, ((params[4][3] * mDec[4]) + (oDec[4])));
   
 
 

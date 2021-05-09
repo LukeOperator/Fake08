@@ -26,10 +26,10 @@ float kold[NUM_CONTROLS];
 //for example, the kick pitch runs from 50 - 150, so mPitch is 100 (0-100), and oPitch is +50 (50-150)
 
 float mPitch[] = {2000.0f, 2000.0f, 4000.0f, 4000.0f, 200.0f};
-float mDec[] = {0.3f, 0.5f, 0.5f, 1.0f, 0.5f};
+float mDec[] = {0.3f, 0.5f, 0.5f, 0.3f, 0.3f};
 
 float oPitch[] = {50.0f, 1000.0f, 3000.0f, 200.0f, 10.0f};
-float oDec[] = {0.01f, 0.1f, 0.05f, 0.1f, 0.1f};
+float oDec[] = {0.01f, 0.1f, 0.05f, 0.01f, 0.01f};
 
 float trig[] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
 
@@ -131,14 +131,13 @@ void Hat()
   ampEnv[2].Trigger();
   ampEnv[2].Trigger();
 }
-void Laser()
+void CV1()
 {
   //pew pew
   ampEnv[3].Trigger();
-  pitchEnv[3].Trigger();
 }
-void Buzz()
+void CV2()
 {
   //Buzz goes here
-
+  ampEnv[4].Trigger();
 }
